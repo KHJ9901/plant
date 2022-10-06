@@ -1,0 +1,288 @@
+@charset "UTF-8";
+.listName{
+	margin-left:422px;
+	position: absolute;
+}
+
+
+.boardarea{
+color:gray;	
+}
+.listName h3{
+	margin: -9px 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+.link_sort1 {
+	text-decoration: none;
+}
+
+.link_sort2 {
+text-decoration: none;
+}
+
+.link_sort3 {
+text-decoration: none;
+}
+
+.link_sort1:hover{
+text-decoration: underline;
+}
+
+.link_sort2:hover{
+text-decoration: underline;
+}
+
+.link_sort3:hover{
+text-decoration: underline;
+}
+
+.boardupdown{
+	   margin: 31px 0px 369px 0px;
+}
+.bdbox {
+	width: 1000px;
+ 	margin: 10px auto;
+}
+
+
+.bdtitle {
+	margin: 55px 0 0px;
+}
+
+.subMenu {
+	margin: 70px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+.membdbt {
+	display:flex;	
+	position: relative;
+}
+
+.membdbt1 {
+	background-color : transparent;
+	top:1px;
+	border: 1px black solid;
+}
+
+.regDel{
+	float:right;
+
+}
+
+.membdbt2 {
+	background-color : transparent;
+	border: 1px black solid;
+}
+
+.membdbt3 {
+	background-color : transparent;
+	border: 1px black solid;
+}
+
+div.bdbox > div.bdtitle > div {
+	background: white;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.bdtitle strong {
+	font-size: 1.5rem;
+}
+
+.bdtitle h1 {
+	color: black;
+	margin-top: 5px;
+	font-size: 3.4rem;
+}
+
+.write {
+	position : relative;
+	float: right;
+}
+.listbt {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 0;
+	border-radius : 5px;
+}
+
+.listbt a {
+	display: inline-block;
+	min-width: 80px;
+	margin-left: 10px;
+	padding: 10px;
+	border : 1px solid black;
+	border-radius: 2px;
+	font-size: 1.4rem;
+	border-radius : 5px;
+}
+
+.listbt a:first-child {
+	margin-left:0;
+	border-radius : 5px;
+}
+
+.listbt a.on {
+	background : white;
+	color : black;
+	border-radius : 5px;
+}
+.subBt{
+	width: 100%;
+    position: absolute;
+    padding: 1px 0;
+}
+
+.bdlist {
+	width:100%;
+	border-top: 4px solid black;
+    margin: 46px 0 10px 0;
+}
+
+.bdlist > div {
+	border-bottom: 1px solid grey;
+	font-size: 0;
+}
+
+.bdlist > div.top {
+	border-bottom: 2px solid grey;
+}
+
+.bdlist > div:last-child {
+	border-bottom: 2px solid black;
+}
+
+.bdDetailTitle {
+	display: inline-block;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+.bdDetailWdate, .bdDetailCount, .bdDetailName {
+	display: inline-block;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+.bdlist > div.top > div {
+	font-weight: 600;
+	color: black;
+}
+
+
+
+.bdDetailTitle {
+	width:100%;
+}
+
+.bdDetailSub {
+	height: 50px;
+}
+
+.bdDetailWdate {
+	width: 30%;
+}
+
+.bdDetailCount {
+	width: 30%;
+}
+
+.bdDetailName {
+	width: 30%;
+}
+
+.bdDetailContentWrap {
+	text-align: center;
+}
+
+.bdDetailContent {
+	width: 80%;
+	overflow : auto;
+	text-align: left;
+	display: inline-block;
+	padding: 10px 0;
+	font-size: 1.4rem;
+}
+
+.memBdNum, .memBdTitle, .memBdWdate, .memBdCount, .memBdName, .memBdId {
+	width : 15%;
+	display: inline-block;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+.bdpage {
+	margin: 30px 0 30px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.bdpage a {
+	display: inline-block;
+    width: 30px;
+    color: black;
+}
+
+.mgFreeBoard {
+    text-align: center;
+}
+
+.mgQuestionBoard {
+	text-align: center;
+}
+
+.mgJournalBoard {
+	text-align: center;
+}
+
+.subMenu > div > div {
+	font-size: 15px;
+	display: grid;
+}
+
+.wholeCategory {
+	height: 32px;
+}
+
+.mgInput {
+	height: 32px;
+	font-size: 14px;
+    width: 30%;
+}
+
+.mgSearchBt {
+	width: 8%;
+}
+
+.delMemNum, .delMemWdate, .delMemDdate, .delMemId, .delMemName, .delMemPhone, 
+.memBdPhone, .plantNum, .plantName, .plantWdate, .plantCount {
+	width : 15%;
+	display: inline-block;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+.bdBottom {
+	display: flex;
+    align-content: center;
+}
+.bdBottom > div {
+	display: grid;
+    align-content: center;
+}
+.bdBottomBt {
+	width: 13px;
+    height: 13px;
+}

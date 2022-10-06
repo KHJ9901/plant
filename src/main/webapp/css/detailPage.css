@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+hr {
+	margin: 50px 0 50px 0;
+}
+
+.wholeDetail {
+	margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    text-align: left;
+}
+
+.detailHead {
+	display: flex;
+	padding: 80px 0 0 0;
+}
+
+.detailImg img {
+	min-block-size: -webkit-fill-available;
+	height: 300px;
+}
+
+.detailHeadTitle {
+	width: 100%;
+    padding: 0 0 0 60px;
+}
+
+.subTitle {
+	margin: 0 0 10px;
+}
+
+.cateHeart {
+	display: flex;
+	justify-content: space-between;
+}
+
+.categoryWrap {
+	display: flex;
+    gap: 10px;
+}
+.detailCategory {
+	text-align: center;
+    width: fit-content;
+	font-size: 20px;
+    font-weight: 550;
+    border: 2px lightgreen solid;
+    border-radius: 13px;
+    padding: 5px;
+    margin: 0 0 10px;
+}
+
+.heartDiv {
+	position: relative;
+}
+.heart {
+	border:0px;
+	background-color:transparent;
+    font-size: 50px;
+    position: absolute;
+    transition : all 0.3s;
+    color:black;
+}
+
+.heart:hover {
+	font-size:60px;
+	position:absolute;
+	font-weight : 800;
+	color : red;
+	text-shadow: -1px 1px red, 1px 1px red, 1px 1px red, 1px -1px red;
+}
+
+.heart:active {
+	font-size:55px;
+	position:absolute;
+	font-weight : 800;
+	color : red;
+	text-shadow: -1px 1px red, 1px 1px red, 1px 1px red, 1px -1px red;
+}
+
+.kname {
+	font-size: 35px;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+.ename {
+	font-size: 25px;
+    color: grey;
+}
+
+.advice {
+	display: grid;
+    align-content: space-between;
+    height: 161px;
+    border: 2px grey solid;
+    border-radius: 15px;
+    padding: 15px;
+    gap: 12px;
+}
+
+.adviceText {
+	font-size: 20px;
+}
+
+.easy {
+	border: 2px lightgrey solid;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: transparent;
+    position: relative;
+    transition : all 0.4s;
+    overflow: hidden;
+    cursor: pointer;
+    align-content: center;
+    display: inherit;
+}
+
+.easy::before {
+	content: "";
+	position: absolute;
+	height:100%;
+	width: 50%;
+	background-color : grey;
+	top: 0;
+	right:100%;
+	transition : all 0.4s;
+	z-index:-1;
+	border-radius: 10px 0 0 10px;
+}
+
+.easy:hover::before {
+	transform: translateX(100%);
+}
+
+.easy:hover {
+	color : white;
+	
+}
+
+.hard {
+	border: 2px lightgrey solid;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: transparent;
+    position: relative;
+    transition : all 0.4s;
+    overflow: hidden;
+    cursor: pointer;
+    align-content: center;
+    display: inherit;
+}
+
+.hard::before {
+	content: "";
+	position: absolute;
+	height:100%;
+	width: 50%;
+	background-color : grey;
+	top: 0;
+	right:100%;
+	transition : all 0.4s;
+	z-index:-1;
+	border-radius: 10px 0 0 10px;
+}
+
+.hard:hover::before {
+	transform: translateX(100%);
+}
+
+.hard:hover {
+	color : white;
+}
+
+.water, .place, .moist, .etc {
+	margin: 0 0 20px;
+}
+
+.detailReport, .detailQuestion{
+    text-align: -webkit-center;
+}
+
+.detailQuestion{
+    margin: 0 0 100px;
+}
+
+.reportBt {
+    margin: 18px 0 0 0;
+}
+
+.reportBt button {
+	background: darkred;
+    color: white;
+    border: none;
+    width: 20%;
+    transition: all 0.4s;
+    cursor: pointer;
+    height: 40px;
+}
+
+.reportBt button:hover {
+	background : white;
+	color :darkred;
+	transform: translateY(-7px);
+	font-weight: 900;
+}
+.questionBt {
+	margin: 18px 0 0 0;
+}
+
+.questionBt button {
+	background: green;
+    color: white;
+    border: none;
+    width: 20%;
+    transition: all 0.4s;
+    cursor: pointer;
+    height: 40px;
+}
+
+.questionBt button:hover {
+	background : white;
+	color :green;
+	transform: translateY(-7px);
+	font-weight: 900;
+}
+
+.reportBt a {
+	text-decoration: none;
+    color: darkred;
+}
+
+.questionBt a {
+	text-decoration: none;
+    color: green;
+}
+

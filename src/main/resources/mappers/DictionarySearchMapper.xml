@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--*** 인터페이스 이름(com.plant.mapper.MemberMapper)과 xml의 namespace 속성값이 일치해야함 ****-->
+<mapper namespace="com.plant.mapper.DictionaryMapper">
+
+			<!--사전 관련-->
+
+	<select id="dicListSearch" resultType="com.plant.dto.Dictionary">
+		<![CDATA[
+		     SELECT * 
+		     FROM
+		        (
+		        SELECT rownum as rn, z.*
+		        FROM
+		            (
+		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            FROM
+		                (
+		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                FROM dictionary_img di, dictionary d
+		                WHERE d.seqno = di.seqno
+		                ) a, dictionary_img_thumb t
+		            WHERE a.dicimg_seqno = t.dicimg_seqno
+		            ) z
+		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        
+			<if test="searchName != null">
+				and name LIKE '%'#{value}'%'
+			</if>
+			
+		        )
+		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
+		]]>
+	</select>
+	
+	<select id="dicInListSearch" resultType="com.plant.dto.Dictionary">
+		<![CDATA[
+		     SELECT * 
+		     FROM
+		        (
+		        SELECT rownum as rn, z.*
+		        FROM
+		            (
+		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            FROM
+		                (
+		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                FROM dictionary_img di, dictionary d
+		                WHERE d.seqno = di.seqno
+                		AND lcate = '실내용'		                
+		                ) a, dictionary_img_thumb t
+		            WHERE a.dicimg_seqno = t.dicimg_seqno
+		            ) z
+		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        
+			<if test="searchName != null">
+				and name LIKE '%'#{value}'%'
+			</if>
+			
+		        )
+		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
+		]]>	
+	</select>
+	
+	<select id="dicOutListSearch" resultType="com.plant.dto.Dictionary">
+		<![CDATA[
+		     SELECT * 
+		     FROM
+		        (
+		        SELECT rownum as rn, z.*
+		        FROM
+		            (
+		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            FROM
+		                (
+		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                FROM dictionary_img di, dictionary d
+		                WHERE d.seqno = di.seqno
+                		AND lcate = '야외용'		                
+		                ) a, dictionary_img_thumb t
+		            WHERE a.dicimg_seqno = t.dicimg_seqno
+		            ) z
+		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        
+			<if test="searchName != null">
+				and name LIKE '%'#{value}'%'
+			</if>
+			
+		        )
+		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
+		]]>		
+	</select>
+
+
+		<!--회원 식물 관련 -->
+		
+	<select id="MpListSearch" resultType="com.plant.dto.Mplant">
+		<![CDATA[
+		     SELECT * 
+		     FROM
+		        (
+		        SELECT rownum as rn, z.*
+		        FROM
+		            (
+		            SELECT	/*+INDEX(mplant PK_MPLANT) */ 
+		            		mpt.no, mpt.filename, mpt.filesize, mpt.filetype, mpt.filepath, a.name, a.mplant_seqno
+		            FROM
+		                (
+		                SELECT mpi.mpi_seqno, mp.name, mp.mplant_seqno
+		                FROM mplant_img mpi, mplant mp
+		                WHERE mp.mplant_seqno = mpi.mplant_seqno
+		                ) a, mplant_img_thumb mpt
+		            WHERE a.mpi_seqno = mpt.mpi_seqno
+		            ) z
+		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        
+			<if test="searchName != null">
+				and name LIKE '%'#{value}'%'
+			</if>
+			
+		        )
+		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
+		]]>	
+	</select>
+
+</mapper>

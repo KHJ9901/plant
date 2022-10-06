@@ -1,0 +1,684 @@
+@charset "UTF-8";
+
+/* 질문등록 */
+section{
+	display: block
+}
+
+.container3 {
+	margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    overflow: visible;
+}
+
+.ulline {
+	list-style: none;
+}
+
+.list-1 {
+	display: flex;
+    align-items: center;
+    margin: 20px 0 20px 0;
+    color: #666;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+}
+
+.ak_item {
+    display: flex;
+    height: 180px;
+    padding: 20px;
+    border-bottom: 1px solid #f3f3f3;
+    list-style: none;
+    margin: 0;
+}
+
+.ak_item:hover{
+	background-color: #f3f3f3 ;
+	
+}
+
+
+.li_item {
+	display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 720px;
+}
+
+.li_name {
+	margin: 0;
+    color: #969696;
+    font-size: 20px;
+}
+
+.li_content {
+	margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 26px;
+    word-break: break-all;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.li_status {
+	margin-top: auto;
+    margin-bottom: 0;
+    color: #969696;
+    font-size: 16px;
+    line-height: 18px;
+ 	text-align: right;
+}
+
+sqan{
+	color: #969696;
+	
+}
+
+span.li_date2::before{
+    content: "|";
+    margin: 0 10px;
+    color: var(--background-color);
+}
+
+.asd_topper_reply {
+	color: #444;
+    margin-top: 10px;
+    word-break: break-all;
+}
+
+
+
+/* 댓글작성 */
+.asd_body {
+	color: #444;
+   /*  font-size: 16px; */
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
+
+.asd_page_container{
+	background-color: #f8f8f8;
+	margin-top: 55px;
+	height: 100%;
+}
+
+.asd_cotainner {
+	background-color: #f8f8f8;
+}
+
+.asd_con_detail{
+	padding-bottom: 120px;
+	margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+    max-width: 1040px;
+    overflow: visible;
+}
+section {
+	display: block;
+}
+
+.asd_detail_title{
+	padding: 20px;
+    text-align: center;
+}
+
+.asd_detail_form{
+	background-color: #fff;
+    border-radius: 4px;
+    padding: 60px 60px 20.5px 60px;
+    color: #666;
+}
+
+.asd_main_title{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.asd_group {
+	display: block;
+}
+
+.asd_group:nth-child(2){
+	display: block;
+	font-size: 18px;
+    line-height: 19px;
+    color: #444;
+}
+.asd_title {
+	font-size: 20px;
+    line-height: 20px;
+    color: #365650;
+    font-weight: bold;
+}
+
+.asd_writer{
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+.asd_date {
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+.asd_line {
+	border: none;
+    border-bottom: 1px solid #e5e5e5;
+    margin:0px 0
+}
+
+.asd_content{
+	margin-top: 30px;
+    font-size: 20px;
+    line-height: 180px;
+    word-break: break-all;
+}
+
+.asd_bottom_group {
+	margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.asd_bottom_group button{
+	width: 180px;
+    color: #666;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+button {
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.asd_qna {
+	pointer-events: none;
+}
+
+.asd_down_only {
+	display: none;
+}
+
+.asd_seqarator{
+	color:#ddd;
+}
+
+.ask_file {
+	margin-top: 20;
+}
+
+.asd_report {
+	text-align: right;
+    right: 0;
+    cursor: pointer;
+    outline: none! important;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    
+}
+
+.asd_reply{
+	background-color: #fff;
+    border-radius: 4px;
+    padding: 0 60px 60px;
+    color: #666;
+}
+
+.asd_line{
+    background-color: #fff;
+    border-radius: 4px;
+    color: #666;
+}
+
+.asd_reply_count {
+	margin-top: 40px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.asd_reply_title {
+	color: #444;
+}
+	
+.asd_reply_count {
+	color: #599270;
+}
+
+.asd_input_item {
+	margin-top: 20px;
+    position: relative;
+}
+
+.asd_textarea {
+	margin-top: 10px;
+    display: block;
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 2px;
+    resize: none;
+    width: 100%;
+    min-height: 90px;
+    overflow: hidden;
+}
+
+#asd_textarea {
+	height: 108px;
+	margin-top: 10px;
+    display: block;
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 2px;
+    resize: none;
+    width: 100%;
+    min-height: 90px;
+    overflow: hidden;
+}
+.asd_label {
+	pointer-events: none;
+    font-size: 16px;
+    line-height: 19px;
+    color: #969696;
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    word-break: keep-all;
+}
+
+.asd_btn_group {
+	right: 8px;
+    bottom: -4px;
+    position: absolute;
+}
+
+.asd_regist_bto{
+	border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 50px;
+    font-weight: bold;
+    color: #599270;
+}
+
+.asd_length_counter {
+	margin-top: 8px;
+    text-align: right;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--text-color-3);
+}
+
+.asd_reply_list {
+	margin-top: 10px;
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.li_reply_list {
+	padding: 20px 14px 20px;
+    border-bottom: 1px solid #e5e5e5;
+    list-style: none;
+    margin: 0;
+    font-size: 17px;
+}
+
+.asd_bottom_btn_group {
+	margin-top: 20px;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.asd_no_click{
+    pointer-events: none;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #969696;
+}
+
+/* 질문등록화면 */
+
+.asd_page_container2{
+	background-color: #f8f8f8;
+	margin-top: 55px;
+	height: 100%;
+	margin-bottom: 100px;
+}
+
+.asd_btn_group2 {
+	text-align: center;
+}
+
+.asd_hekp{
+	margin-right: 5px;
+	position: relative;
+    width: 135px;
+    height: 85px;
+    padding: 10px;
+    text-align: center;
+    margin: 0 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    align-items: flex-start;
+    color: #444;
+}
+.asd_active {
+    margin-right: 5px;
+	position: relative;
+    width: 135px;
+    height: 85px;
+    text-align: center;
+    margin: 0 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    align-items: flex-start;
+    color: #444;
+}
+
+.asd_ask_help{
+	display: block;
+    margin-top: 0em;
+}
+
+.asd_input_title {
+	font-size: 16px;
+	margin-top: 30px;
+}
+
+.asd_autocomplete{
+	position: relative;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.asd_autocomplete_input {
+	font-size: 14px;
+	margin: 10px 0 0;
+	box-sizing: border-box;
+	resize: none;
+	height: 40px;
+	text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+}
+
+.asd_item {
+	width: 100%;
+    display: block;
+    border: 1px solid rgba(0,0,0,.25);
+    border-radius: 4px;
+    padding: 4px 8px 4px 8px;
+}
+
+.asd_autocomplete_label{
+	font-size: 14px;
+	pointer-events: none;
+	line-height: 19px;
+    color: #969696;
+    position: absolute;
+    top: 11px;
+    left: 12px;
+}
+
+.asd_textarea_item {
+	margin-top: 10px;
+    position: relative;
+}
+
+#asd_taxtarea {
+	height: 108px;
+	min-height: 100px;
+	margin-top: 10px;
+    display: block;
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 2px;
+    resize: none;
+    width: 100%;
+    overflow: hidden;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    background-color: field;
+    column-count: initial !important;
+    margin: 0em;
+}
+
+.asd_md_down_only {
+	display: none;
+}
+
+.asd_input_tips{
+	margin-left: 30px;
+    font-size: 15px;
+    line-height: 18px;
+    color: #969696;
+}
+
+.asd_photo_uploader {
+	margin-top: 10px;
+	display: flex;
+}
+
+.asd_upload_input {
+	cursor: pointer;
+    display: block;
+    flex-direction: column;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #bababa;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.asd_text_center{
+	text-align: center;	
+}
+
+.asd_btn_primary {
+	margin-top: 80px;
+    width: 168px;
+    height: 48px;
+    background-color: #365650;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 16px;
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    margin: 0em;
+    padding: 1px 6px;
+}
+
+.ask_pagination {
+  display: inline-block;
+  justify-content: center;
+  display: flex;
+}
+
+.ask_pagination a {
+  color: black;
+  float: left;
+  padding: 13px 20px;
+  text-decoration: none;
+}
+
+.ask_pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.ask_pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+
+div.write {
+ margin-top: 100px;
+ display: table;
+ table-layout: fixed;
+ width: 100%;
+ height: 60px;
+}
+
+div.write2 {
+ margin-top: 150px;
+ margin-bottom: 50px;
+ display: table;
+ table-layout: fixed;
+ width: 100%;
+ height: 80px;
+ text-align: center;
+}
+
+div.write3 {
+ font-size: 15px;
+ vertical-align: middle;
+}
+
+table {
+ border-spacing: 10px;
+ margin-left: auto;
+ margin-right: auto;
+ width: 60%;
+}
+
+img{
+ width: 15px;
+ margin-bottom: 3px;
+}
+
+#replyInput{
+ width: 100%;
+ margin: 20px;
+}
+
+.reply{
+  margin: 20px;
+}
+
+/*분양 디테일 신청*/
+.apply {
+ margin-top: 50px;
+}
+
+.modify {
+ margin-top: 20px;
+ margin-bottom: 20px;
+ text-align: right;
+ width: 80%;
+}
+	
+.modal-content{
+	margin:auto;
+	text-align:center;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:350px;
+/* 	height:350px; */
+	border: 2px solid white;
+	border-radius:30px;
+	background:#CBE9AC;
+	padding:50px;
+	transform:translate(-50%, -50%);	
+}	
+
+.container{
+	padding : 20px 20px 20px 20px;
+}
+	
+/* 로그인 팝업 */
+#modal input[type=text], #modal input[type=password] {
+	background-color:#F8F8FF;
+	width: 60%;
+	padding: 10px 10px;
+	border: none;
+	border-bottom: 1.5px solid lightgray;}

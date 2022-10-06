@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.plant.mapper.AdoptReplyMapper">
+
+	<select id="getCoungByBno" resultType="int">
+		SELECT count(seqno) FROM adopt_reply WHERE adopt_seqno = #{bno}
+	</select>
+	
+	<!-- 저장 -->
+	<insert id="insert">
+		insert into adopt_reply(seqno, content, id, adopt_seqno)
+		values (ADOPT_REPLY_SEQNO.nextval, #{comment}, #{id}, #{adoptNo})
+	</insert>
+	
+	<!-- 조회 -->
+	<select id="getList" resultType="com.plant.dto.AdoptReplyVO">
+	<![CDATA[
+		SELECT *
+		FROM (
+			SELECT	/*+INDEX(adopt_reply PK_REPLY) */
+					rownum rn, seqno, content, id, adopt_seqno,
+					TO_CHAR(wdate, 'YYYY-MM-DD HH24:MI:SS') as wdate
+			FROM adopt_reply
+			WHERE adopt_seqno = #{bno}
+			AND rownum <= #{cri.currentPage}* #{cri.rowPerpage}
+		) WHERE rn > (#{cri.currentPage} -1) * #{cri.rowPerpage}
+	]]>	
+	</select>
+	
+	<select id="read" resultType="com.plant.dto.AdoptReplyVO"> 
+		SELECT * FROM adopt_reply WHERE seqno= #{rno}
+	</select>
+	
+	<!-- 수정 -->
+	<update id="update"> 
+		UPDATE adopt_reply SET content=#{content} WHERE seqno= #{seqno}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		DELETE FROM adopt_reply WHERE seqno= #{rno} 
+	</delete>
+	
+</mapper>

@@ -1,0 +1,287 @@
+@charset "UTF-8";
+
+body {
+  background-image: url("/img/back2.jpg");
+  min-height:100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile{
+  text-align-last: center;
+}
+
+.container3 { 
+  margin: 270px;
+}
+
+.bookcover {
+  width: 80%;
+  height: 800px;
+  margin: 170px auto;
+  background-color: darkseagreen;
+  border-radius: 9px;
+  border: 1px solid #738186;
+  position: relative;
+}
+
+.bookdot {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 98.5%;
+  height: 775px;
+  border: 2px dashed white;
+  border-radius: 9px;
+}
+
+.page {
+  position: absolute;
+  top: 8px;
+  left: 7px;
+  width: 98.5%;
+  height: 758px;
+  background-color: rgb(238,238,238);
+  border: none;
+  border-radius: 9px;
+  display: flex;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0.4;
+  margin-bottom: 15px;
+}
+
+.middle-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+  margin-top: 25px;
+}
+
+.right-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+  flex: 0.15;
+  margin: 15px 15px 15px 0;
+}
+
+.left-container .left-visits {
+  flex: 0.2;
+}
+
+.left-container .left-visits p {
+  font-size: 15px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.left-container .left-box {
+  background-color: white;
+  border: 1px solid #ced1d3;
+  border-radius: 9px;
+  margin: 0 15px 5px;
+  flex: 2;
+  padding: 15px;
+}
+
+.middle-container .middle-title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  flex: 0.2;
+  display: flex;
+}
+
+.middle-container .middle-box {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ced1d3;
+  border-radius: 9px;
+}
+
+.middle-container .middle-title .middle-desc {
+  flex: 1.5;
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.middle-container .middle-title .middle-url {
+  flex: 1.5;
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 400px;
+  
+}
+
+.left-box .profile-img {
+  width: 250px;
+  height: 250px;
+  margin: 15px;
+}
+
+.left-box .profile p {
+  font-size: 13px;
+  font-family: 'KyoboHand';
+  height: 250px;
+  margin: 20px;
+}
+
+.left-box .profile .profile-name {
+  font-size: 15px;
+  height: 40px;
+  margin: 10px;
+  text-align: center;
+}
+
+.top-msg {
+  color: rgb(63,133,172);
+  font-family: 'KOTRA_BOLD-Bold';
+  font-size: 13px;
+}
+
+/* 다이어리 */
+.middle-box .date-container {
+  margin: 30px;
+  height: 80px;
+  border: 1px solid rgb(220, 220, 220);
+  display: flex;
+  text-align: center;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.date-container .today-date {
+  font-family: 'NeoDunggeunmo';
+  color: rgb(89,142,176);
+  font-weight: bold;
+  font-size: 18px;
+  padding: 2px;
+  box-sizing: border-box;
+  margin-left: 20px;
+}
+
+.date-container .calendar {
+  flex: 0.9;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'NeoDunggeunmo';
+  margin-left: 30px;
+}
+
+.date-container .calendar .day {
+  font-family: inherit;
+  color: rgb(126, 121, 114);
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+}
+
+.date-container .calendar .sat {
+  font-family: inherit;
+  color: blue;
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+}
+
+.date-container .calendar .sun {
+  font-family: inherit;
+  color: red;
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+}
+
+.middle-box .diary-container {
+  overflow-y: scroll;
+  margin: 20px;
+  height: 500px;
+}
+
+.diary-container2 {
+ text-align: center;
+ padding: 80px;
+}
+
+.diary-container .diary-box {
+  border: 1px solid rgb(220, 220, 220);
+  padding: 30px;
+  margin: 10px;
+  text-align: right;
+}
+
+.date {
+  color : rgb(89,142,176);
+  text-align: left;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.content {
+  text-align: center;	
+}
+
+.diary-container .diary-box .diary-date {
+  font-family: 'NeoDunggeunmo';
+  color: rgb(89,142,176);
+  padding-top: 20px;
+  margin-left: 30px;
+}
+
+.diary-container .diary-box .diary-txt {
+  text-align: center;
+  margin: 30px 20px;
+}
+
+.diary-txt > p {
+  margin: 5px 20px;
+  font-family: 'KyoboHand';
+  font-size: 15px;
+}
+
+.middle-box .fa-lock {
+  margin-right: 10px;
+}
+
+hr {
+  border-bottom: 0px;
+  margin-top: 1px;
+}
+
+hr.dotted {
+  border: none;
+  width: 100%;
+  border: 0.1px dashed rgb(192, 191, 191);
+}
+
+.myButtonD {
+  text-decoration:none;
+  width: 80%;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: white;
+  background-color: #96BB8D;
+  border: none;
+/*   border-radius: 45px; */
+/*   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  padding: 10px;
+  }
+
+.mybuttonD:hover {
+  background-color: #fff;
+  color:black;
+  transform: translateY(-7px);
+}

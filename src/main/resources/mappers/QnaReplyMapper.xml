@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.plant.mapper.QnaReplyMapper">
+
+    <select id="getCountByBno" resultType="int">
+    	SELECT count(*) FROM qna_reply WHERE seqno = #{bno}
+    </select>
+    
+    <!-- 인터페이스 이름과 일치해야 연결이됨 -->
+	<insert id="insert">
+		insert into qna_reply(qr_seqno, content, id, seqno)
+		values(QNA_REPLY_SEQNO.nextval, #{content}, #{id}, #{seqno})
+		<!-- dto에 생성한 이름 -->
+	</insert>
+	
+	<select id="getList" resultType="com.plant.dto.QnaReplyVo">
+	  <![CDATA[ 
+		SELECT *
+		FROM (
+			SELECT /*+INDEX(qna_reply SYS_C007913) */
+				   rownum rn, qr_seqno, content, id, seqno,
+				   TO_CHAR(wdate, 'YYYY-MM-DD') as wdate
+			FROM  qna_reply
+			WHERE seqno = #{bno}
+			  AND rownum <= #{cri.currentPage} * #{cri.rowPerpage}
+		) WHERE rn > (#{cri.currentPage} -1) * #{cri.rowPerpage}
+	  ]]>
+	</select>
+	
+	<select id="read" resultType="com.plant.dto.QnaReplyVo">
+		SELECT * FROM qna_reply WHERE qr_seqno = #{rno}
+	</select>
+	
+	<update id="update">
+		UPDATE qna_reply SET content= #{content} WHERE qr_seqno = #{seqno}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM qna_reply WHERE qr_seqno = #{rno}
+	</delete>
+</mapper>

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+section{
+  display: block;
+}
+
+.reviewContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60%;
+  overflow: visible;
+}
+
+.ulline {
+  list-style: none;
+}
+
+.list-1 {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 20px 0;
+  color: #666;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.ak_item {
+  display: flex;
+  height: 180px;
+  padding: 20px;
+  border-bottom: 1px solid #f3f3f3;
+  list-style: none;
+  margin: 0;
+}
+
+.li_item {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 720px;
+}
+
+.li_name {
+  margin: 0;
+  color: #969696;
+  font-size: 20px;
+}
+
+.li_content {
+  margin-top: 10px;
+  margin-bottom: 0;
+  line-height: 26px;
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.li_status {
+ margin-top: auto;
+ margin-bottom: 0;
+ color: #969696;
+ font-size: 16px;
+ line-height: 18px;
+ text-align: right;
+}
+
+sqan{
+ color: #969696;
+}
+
+span.li_date2::before{
+ content: "|";
+ margin: 0 10px;
+ color: var(--background-color);
+}
+
+table, td, th {
+ border: 1px solid black;
+ height: 40px;
+}
+
+table {
+ border-collapse: collapse;
+ width: 60%;
+}
+
+th{
+ background-color: #eee6c4;
+}
+
+td {
+ text-align: center;
+}
+
+
+/*분양 디테일 신청*/
+.apply {
+ margin-top: 50px;
+}
+
+.modify {
+ margin-top: 20px;
+ margin-bottom: 20px;
+ text-align: right;
+ width: 80%;
+}

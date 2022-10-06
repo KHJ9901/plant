@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--*** 인터페이스 이름(com.plant.mapper.MemberMapper)과 xml의 namespace 속성값이 일치해야함 ****-->
+<mapper namespace="com.plant.mapper.PlantmemberMapper">
+
+	<select id="getById" resultType="com.plant.dto.Plantmember"> <!--인터페이스 메소드 이름-->
+	<!-- ***반드시 dto.Member 에 있는 필드와 프로시저에서 던지는 필드 값이 일치해야!*** -->
+		select * from members where id = #{id} <!--sql 문의 ? 물음표와 같은 것 -->
+	</select>
+	
+	<insert id="insertmember" >
+ 		insert into members(id, pw, name, email, nickname, phone)
+ 		values (#{id}, #{pw}, #{name}, #{email}, #{nickname}, #{phone})
+ 	</insert>
+ 	
+ 	<!-- 아이디중복체크 -->
+ 	<select id="idDoubleCheck" parameterType="String" resultType="int">
+		select count(*) from members where id = #{id}		
+ 	</select>
+ 	
+ 	<delete id="memdel">
+ 		DELETE FROM members WHERE id = #{id}
+ 	</delete>
+
+</mapper>

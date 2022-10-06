@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+body {
+    background-image: url("/img/back1.jpg");
+    min-height:100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img {
+	height:50px;
+	width:50px;
+}
+
+.login {
+	margin:50px;
+}
+
+.logintitle{
+	margin: 70px 0px 70px 0px;
+}
+
+.loginbox {
+	display: flex;
+	justify-content: center;
+    align-content: center;
+    padding: 0 0 40px 0;
+}
+
+.loginboxcontent { 
+	background-color: floralwhite;
+    margin: 20%;
+    border: 4px solid;
+    border-radius: 60px;
+    justify-content: center;
+    align-content: center;
+    height: 650px;
+    width: 40%
+}
+
+.loginButton{
+	height:50px;
+    width:60%; 
+    margin-top:50px;
+}
+
+.username_input{
+	height:50px;
+    width:60%;
+    margin-bottom:20px;
+}
+
+.userpassword_input{
+	height:50px;
+    width:60%; 
+}
+
+
+

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+}
+
+.pagination {
+	text-align-last: center;
+} 
+
+.searchForm {
+	padding-top: 3%;
+}
+
+.searchText {
+	display : inline;
+	padding: 20px 0 20px 0;
+	height: 1%;
+    width: 10%;
+}
+
+.searchInput {
+	width: 25%;
+    height: 30px;
+}
+
+.searchBt{
+    height: 4%;
+    width: 5%;
+}
+
+.searchBt img {
+	position: relative;
+	height: 32px;
+}
+.searchBody {
+	text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    padding: 50px 0 0 0;
+}
+
+.searchBody .searchContentWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 52px 34px;
+    margin-bottom: 60px;
+}
+
+.searchContent {
+	box-sizing: content-box;
+}
+
+.searchContent img {
+	height: 220px;
+}
+
+.dicName {
+	color : black;
+}
+.pageNumDetail{
+	display: inline-flex;
+    gap: 45px;
+}
+
+.pageNum a{
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+	display : inline;
+}
+
+.dicSearch { 
+	text-align-last: center;
+    margin: 1% 0 0 0;
+}
