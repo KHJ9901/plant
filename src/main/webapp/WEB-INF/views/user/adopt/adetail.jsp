@@ -29,22 +29,22 @@
 					
 					<div class="asd_group">				
 						<span class="asd_date">${adopt.wdate}</span>
-						<span class="asd_title">${adopt.count}</span>
+						<span class="asd_count">${adopt.count}</span>
 					</div>
 				</div>
 				
 				<hr class="asd_line">
-				<div class="asd_content">
-				${adopt.content}</div>
+				<div class="asd_station"><span><img src="/img/map.png" alt="station">${adopt.station}</span></div>
+				<div class="asd_content">${adopt.content}</div>
 				
 				<hr class="asd_line">
-				<div class="asd_content">
-				<span>분양 거래 장소 : <img src="/img/map.png" alt="station">${adopt.station}</span><br>
-				<span>식물 이름 : ${adopt.pname}</span><br>
-				<span>수분? : ${adopt.water}</span><br>
-				<span>장소? : ${adopt.place}</span><br>
-				<span>온도? : ${adopt.temp}</span><br>
-				<span>습도? : ${adopt.moist}</span></div>
+				<div class="asd_info">
+					<span class="data">식물</span>${adopt.pname}<br>
+					<span class="data">수분</span>${adopt.water}<br>
+					<span class="data">장소</span>${adopt.place}<br>
+					<span class="data">온도</span>${adopt.temp}<br>
+					<span class="data">습도</span>${adopt.moist}<br>
+				</div>
 
 			<!-- 첨부파일
 				<hr class="asd_line">
@@ -108,7 +108,6 @@
 					</section>
 					<div class="asd_length_counter">(0/100)</div>
 				</div>
-				
 				
 			<!-- 댓글 리스트 출력 영역  -->
 			<div id="reply-list">

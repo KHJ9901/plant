@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* 질문등록 */
 section{
 	display: block
 }
@@ -170,6 +169,14 @@ section {
 .asd_date {
 	vertical-align: middle;
 	font-size: 20px;
+	line-height: 20px;
+}
+
+.asd_count {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 20px;
+	padding-left: 10px;
 }
 
 .asd_line {
@@ -178,11 +185,24 @@ section {
     margin:0px 0
 }
 
-.asd_content{
+.asd_station {
+	font-size:20px;
+	text-align: right;
+}
+
+.asd_content {
 	margin-top: 30px;
     font-size: 20px;
     line-height: 180px;
     word-break: break-all;
+}
+.asd_info {
+	font-size: 15px;
+	margin-top: 20px;
+}
+
+.data {
+	font-weight: bold;
 }
 
 .asd_bottom_group {
@@ -671,11 +691,11 @@ img{
 	transform:translate(-50%, -50%);	
 }	
 
-.container{
+.container {
 	padding : 20px 20px 20px 20px;
 }
 	
-/* 로그인 팝업 */
+/*팝업 */
 #modal input[type=text], #modal input[type=password] {
 	background-color:#F8F8FF;
 	width: 60%;

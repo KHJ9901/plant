@@ -34,10 +34,8 @@
 				
 				<hr class="asd_line">
 				<div class="asd_content">${review.content}</div>
-				
-				<hr class="asd_line">
 				<div class="asd_content">${review.sold}</div>
-				
+
 				<div class="asd_report">
 					<c:if test="${user.id eq review.id}">
 						<button class="myButton" onclick="location.href='/review/rDetail?seqno=${review.seqno}&page=rModify'">수정</button> 

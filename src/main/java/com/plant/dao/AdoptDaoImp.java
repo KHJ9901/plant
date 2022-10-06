@@ -77,7 +77,7 @@ public class AdoptDaoImp implements AdoptDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			//	resourceClose(conn, stmt);	
+			resourceClose(conn, stmt);	
 		}
 		  return adopt;
 	}
@@ -100,7 +100,7 @@ public class AdoptDaoImp implements AdoptDao {
 			search_id = cri.getSearchText();
 		}
 		
-		String sql = "call p_getadopttotal(?, ?, ?)";
+		String sql = "call p_getadopttotal(?,?,?)";
 		
 		try {
 			conn = ds.getConnection();
@@ -149,7 +149,6 @@ public class AdoptDaoImp implements AdoptDao {
 			adopt.setCount(rs.getString("count"));
 			adopt.setWdate(rs.getString("wdate"));
 			adopt.setSdate(rs.getString("sdate"));
-			adopt.setMplant_seqno(rs.getString("mplant_seqno"));
 			adopt.setPname(rs.getString("pname"));
 			adopt.setWater(rs.getString("water"));
 			adopt.setPlace(rs.getString("place"));
@@ -218,8 +217,8 @@ public class AdoptDaoImp implements AdoptDao {
 			
 			StructDescriptor st_adopt = StructDescriptor.createDescriptor("OBJ_ADOPT", conn);
 			Object[] obj_adopt = {adopt.getId(), adopt.getStation(), adopt.getContent(), 
-								  adopt.getWater(), adopt.getPlace(), adopt.getTemp(), adopt.getMoist(),
-								  adopt.getPname(), adopt.getMplant_seqno()};
+								  adopt.getPname(), adopt.getWater(), adopt.getPlace(), 
+								  adopt.getTemp(), adopt.getMoist(), };
 			STRUCT adopt_rec = new STRUCT(st_adopt, conn, obj_adopt);
 
 			stmt.setObject(1, adopt_rec);

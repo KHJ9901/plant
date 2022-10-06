@@ -73,7 +73,7 @@ public class AdoptController {
 		
 		rttr.addFlashAttribute("seqno", adoptService.insertAdopt(adopt));
 		
-		return "redirect:adetail";
+		return "redirect:/adopt/adetail";
 	}
 	
 	//삭제

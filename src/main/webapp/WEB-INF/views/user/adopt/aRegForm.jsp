@@ -34,27 +34,27 @@
 		</tr>-->
 		
 		<tr>
-		<th>식물 이름</th>
+		<th>식물</th>
 		<td><input type="text" style="width:100%" name="pname"></td>
 		</tr>
 		
 		<tr>
-		<th>수분?</th>
+		<th>수분</th>
 		<td><input type="text" style="width:100%" name="water"></td>
 		</tr>
 		
 		<tr>
-		<th>장소?</th>
+		<th>장소</th>
 		<td><input type="text" style="width:100%" name="place"></td>
 		</tr>
 		
 		<tr>
-		<th>온도?</th>
+		<th>온도</th>
 		<td><input type="text" style="width:100%" name="temp"></td>
 		</tr>
 		
 		<tr>
-		<th>습도?</th>
+		<th>습도</th>
 		<td><input type="text" style="width:100%" name="moist"></td>
 		</tr>
 		

@@ -31,6 +31,7 @@ fieldset, img {
 }
 
 .adoptContainer {
+  padding:  50px 100px 0 100px;
   position: relative;
   height: 1500px;
 }
@@ -54,6 +55,16 @@ fieldset, img {
 
 .adoptContainer ul li .adoptBox img {
   height: 100%;
+}
+
+.total {
+  text-align: left;
+}
+
+.search {
+  text-align-last: right;
+  padding-right: 40px;
+
 }
 
 .adoptBox img {
