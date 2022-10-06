@@ -31,10 +31,10 @@
 			        </div>
 	        
 		        <div class="middle-container">
-		          <div class="middle-title">
+<!-- 		          <div class="middle-title">
 		            <div class="middle-desc">나의 식물일기</div>
 		            <div class="middle-url">my plant diary</div>
-		          </div>
+		          </div> -->
 					<div class="middle-box">
 					<c:set var="now" value="<%=new java.util.Date()%>" />
 					<c:set var="today"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd(E)" /></c:set> 
