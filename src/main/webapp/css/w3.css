@@ -38,6 +38,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-table td,.w3-table th,.w3-table-all td,.w3-table-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
 .w3-table th:first-child,.w3-table td:first-child,.w3-table-all th:first-child,.w3-table-all td:first-child{padding-left:16px}
 
+
 .w3-btn, .w3-button{
 	border:none;
 	display:inline-block;
@@ -49,8 +50,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 	background-color:inherit;
 	text-align:center;
 	cursor:pointer;
-	white-space:nowrap
-
+	white-space:nowrap;
 }
 .fa {
     display: inline-block;
@@ -60,10 +60,9 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     -webkit-font-smoothing: antialiased;
 }
 
-.fa-bars:before {
-    content: "\f0c9";
-    box-sizing: inherit;
-}
+/* .fa-bars:before {
+	content: "\f0c9";
+} */
 
 .w3-btn:hover{
 	box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
@@ -120,6 +119,14 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .smallMenu {
 	background : #0C2207;
 	margin: 55px 0 0 0;
+}
+.hamburger {
+	background: url(https://cdn-icons-png.flaticon.com/128/5372/5372882.png);
+    height: 53px;
+    background-size: 29px;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50px!important;
 }
 
 .w3	

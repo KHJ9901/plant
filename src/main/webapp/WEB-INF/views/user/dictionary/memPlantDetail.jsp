@@ -53,9 +53,9 @@
 				<div class="advice">
 					<div class="adviceText">키우는 난이도가 어땠나요?</div>
 					<div class="levelText">
-					 난이도 :
-						<c:if test="${md.plevel == 'e'}" > 쉬움 </c:if>
-						<c:if test="${md.plevel == 'h'}" > 어려움 </c:if>
+					 난이도 : 
+					<c:if test="${md.plevel eq 'e'}">쉬움</c:if>
+					<c:if test="${md.plevel eq 'h'}">어려움</c:if>
 					</div>
 				</div>
 			</div>
@@ -102,8 +102,13 @@
 	
 	<!-- 댓글 등록 폼  -->
 	<div>
-		<textarea id="content" name="content" placeholder="댓글작성" rows="2" cols="50"></textarea>
-		<button id="addReplyBtn">댓글등록</button>
+		<textarea id="content" name="content" 
+			<c:if test="${user != null}">placeholder="댓글작성"</c:if>
+			<c:if test="${user == null}">placeholder="로그인을 해야 댓글 작성이 가능합니다"</c:if>
+			 rows="2" cols="50"></textarea>
+			 
+		<button id="loginCheck">댓글등록</button>
+		
 	</div>
 	
 	<hr>
@@ -136,14 +141,18 @@
 
 </div>
 <script>
+
+
 	function del_confirm(seqno) {
 		var rs = confirm('정말로 삭제하시겠습니까?');
 		if(rs) {
 			location.href="boardDelete?seqno=" + seqno;
 		}
 	}
-</script>	
+</script>
+	
 <script type="text/javascript" src="/js/MpReply.js"></script>
+
 <script>
 var seqno = '<c:out value="${md.mplant_seqno}" />';
 var id = '<c:out value="${user.id}" />';
@@ -256,28 +265,32 @@ $(document).ready(function(){
 	$("#modalCloseBtn").on("click", function(e){
 		modal.hide();	
 	});
-	
-	
 
-	
 	/* 댓글 삽입 */
-	$("#addReplyBtn").on("click", function(e) {
-		var content = document.getElementById("content").value;
-		
-		var reply = {
-			content : content,
-			mplant_seqno : seqno,
-			id : id
-		};
-		
-		replyService.add(reply, function(result){
-			alert("댓글이 등록되었습니다." + result);
-			document.getElementById("content").value = "";
-			showList(-1);
-			//document.getElementById("newLine").innerHTML = "<li>" + reply.comment + "</li>";
-		});	
+	$("#loginCheck").on("click", function(e) {
+		if(${user == null}) {
+			console.log("*******************************************");
+			alert("로그인 후 댓글 작성이 가능합니다.");
+			
+		} else if(${user != null}) {
+			console.log("***************여기까지 왔니?*****************");
+				var content = document.getElementById("content").value;
+				
+				var reply = {
+					content : content,
+					mplant_seqno : seqno,
+					id : id
+				};
+				
+				replyService.add(reply, function(result){
+					alert("댓글이 등록되었습니다." + result);
+					document.getElementById("content").value = "";
+					showList(-1);
+					//document.getElementById("newLine").innerHTML = "<li>" + reply.comment + "</li>";
+				})
+			}
 	});
-	
+
 	var rno;
 	/* 수정 창 띄우기 */
 	$(".reply_ul").on("click", "li", function(e){
