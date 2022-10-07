@@ -31,14 +31,13 @@ public class DicController {
 	public String Diclist(Criteria cri, Model model) {
 		
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
-		if(cri.getRowPerpage() == 0) cri.setRowPerpage(40);
+		if(cri.getRowPerpage() == 0) cri.setRowPerpage(30);
 		
 		List<Dictionary> diction = ds.list(cri);
 		
 		model.addAttribute("pageMaker", new Page(ds.getDicRec(cri), cri));			
 		model.addAttribute("diction", diction);
 		return "/dictionary/dictionary";
-		
 	}
 	
 	@RequestMapping(value="dictionaryIn", method= {RequestMethod.POST, RequestMethod.GET})

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.mgMpwholeDetail {
+	margin: 3% 0 0 3%;
+}
+
+.detailImg img {
+	    width: 10%;
+}
+
+.dicRegWholeDetail {
+	margin: 0px 0 0 30%;
+}
+
+.dicRegHead {
+	display: flex;
+	padding: 80px 0 0 0;
+	margin: 0 0 106px;
+}
+
+.dicRegImg {
+	align-self: center;
+	font-size: large;
+}
+
+.dicRegName, .dicRegCate {
+	width: 100%;
+	height: 40%;
+	font-size: 20px;
+}
+
+.dicRegWater, .dicRegPlace, .dicRegTemp, .dicRegMoist, .dicRegEtc{
+	width: 50%;
+	height: 5%;
+	font-size: 20px;
+}
+
+.dicRegMoist {
+	margin: 15px 0;
+}
+
+.dicAdvice {
+	text-align: -webkit-center;
+}
+
+.dicRegBt {
+    margin: 5% 0 0 15%;;
+	background: green;
+    color: white;
+    border: none;
+    width: 20%;
+    transition: all 0.4s;
+    cursor: pointer;
+    height: 40px;
+}
+
+.dicRegBt:hover {
+	background : white;
+	color :green;
+	transform: translateY(-7px);
+	font-weight: 900;
+}
+
+

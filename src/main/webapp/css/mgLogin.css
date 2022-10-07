@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+#modal {
+	z-index : 2;
+	position : fixed;
+	top: 0;
+	left: 0;
+	width : 100%;
+	height : 100%;
+	overflow : auto;
+	background-color : white;
+}
+
+.modal-content {
+	margin: auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 340px;
+	border: 2px solid black;
+	background: white;
+	transform: translate(-50%, -50%);
+}
+
+.login {
+	background-color: white;
+	font-size : 20px;
+	border : 10px solid lightgrey;
+	border-radius: 10px;
+	position : fixed;
+ 	left : 50%;
+ 	top : 50%;
+	width : 400px;
+	height : 400px;
+ 	transform: translate(-50%, -50%);
+}
+
+#나가기 {
+	position: fixed;
+	right: 5px;
+	top: 5px;
+	width : 30px;
+	height : 30px;
+	opacity : 0.8;
+}
+
+.loginform input[type=text] {
+	display : block;
+	font-size : 20px;
+	color: black;
+	position : relative;
+	left : 50px;
+	top : 100px;
+	background : transparent;
+	letter-spacing : 5px;
+	text-align : center;
+	margin-left: 27px;
+}
+
+.loginform input[type=password]{
+	font-size : 20px;
+	color: black;
+	position : relative;
+	left : 50px;
+	top : 100px;
+	background : transparent;
+	letter-spacing : 5px;
+	text-align : center;
+	margin-left: 27px;
+}
+
+.loginbtn {
+	font-weight : normal;
+	width : 300px;
+	color : black;
+	font-size : 20px;
+	background : transparent;
+	position : relative;
+	top : 150px;
+	left : 40px;
+	letter-spacing : 40px;
+	border : 10px solid black;
+	transition : all 0.4s;
+}

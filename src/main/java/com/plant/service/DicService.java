@@ -48,25 +48,13 @@ public interface DicService {
 	
 	
 	
-	//====================검색========================RestController
-	public List<Dictionary> dicSearch(Criteria cri);
-	
-	public List<Dictionary> dicInSearch(Criteria cri);
-	
-	public List<Dictionary> dicOutSearch(Criteria cri);
-	
-	public List<Mplant> MplantSearch(Criteria cri);
+	int getDicRec(Criteria cri);
 
-	
-	
-	
-	int getDicRec(Criteria criteria);
+	int getDicInRec(Criteria cri);
 
-	int getDicInRec(Criteria criteria);
+	int getDicOutRec(Criteria cri);
 
-	int getDicOutRec(Criteria criteria);
-
-	int getMplantRec(Criteria criteria);
+	int getMplantRec(Criteria cri);
 
 
 

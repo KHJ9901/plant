@@ -49,8 +49,6 @@ public class DicServicelmp implements DicService{
 	}
 	
 	
-	
-	
 	//---------------상세페이지--------------------//
 	@Override
 	public Dictionary DicDetail(String seqno) {
@@ -61,8 +59,6 @@ public class DicServicelmp implements DicService{
 	public Mplant MpDetail(String seqno) {
 		return dicmapper.mplantDetail(seqno);
 	}
-	
-	
 	
 	
 	//---------------삽입--------------------//	
@@ -79,21 +75,16 @@ public class DicServicelmp implements DicService{
 	}
 	
 	
-	
 	//---------------수정--------------------//
 	@Override
 	public int updateDic(Dictionary diction, MultipartFile files) {
-		
 		return dicmapper.dictionUpdate(diction, mpfs.dicImgUpload(files));
-		
 	}
 	
 	@Override
 	public int updateMp(Mplant mplant, MultipartFile files) {
-		
 		return dicmapper.mplantUpdate(mplant, mpfs.mpImgUpload(files));
 	}
-		
 	
 	//---------------삭제--------------------//
 	@Override
@@ -108,24 +99,7 @@ public class DicServicelmp implements DicService{
 		return dicmapper.mplantDelete(seqno);
 	}
 
-	
-	//=================검색======================================
-	@Override
-	public List<Dictionary> dicSearch(Criteria cri) {
-		return dicmapper.dicListSearch(cri);
-	}
-	@Override
-	public List<Dictionary> dicInSearch(Criteria cri) {
-		return dicmapper.dicInListSearch(cri);
-	}
-	@Override
-	public List<Dictionary> dicOutSearch(Criteria cri) {
-		return dicmapper.dicOutListSearch(cri);
-	}
-	@Override
-	public List<Mplant> MplantSearch(Criteria cri) {
-		return dicmapper.MpListSearch(cri);
-	}
+
 	//---------------파라미터--------------------//
 	private Mplant getFormParameter(FileItem item, Mplant mplant) {
 		System.out.printf("필드이름 : %s, 필드값: %s\n", item.getFieldName() /*input 타입의 필드 이름불러옴*/, item.getString());

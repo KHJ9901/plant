@@ -733,7 +733,6 @@ public class DicDaoImp implements DicDao {
 		int total = 0;
 		
 		String search_kname = cri.getSearchText();
-			System.out.println("22222222222222222222222 : " + search_kname);
 			
 		String sql="call p_dic_total(?,?)";
 		
@@ -745,7 +744,6 @@ public class DicDaoImp implements DicDao {
 			stmt.executeQuery();
 			total = stmt.getInt(2);
 			
-			System.out.println("쳐ㅉ찍어 !!!!!!!!!!!!!!!!!!!!!!!!: " + total);
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}	finally {

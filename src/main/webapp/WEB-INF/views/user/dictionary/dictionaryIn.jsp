@@ -23,13 +23,23 @@
 	</div>
 	
 	<div class="dicSearch">
-		<form name="dicSearchForm" method="post" action="/dicsearch/dictionaryIn">
+		<form name="dicsearch" method="post" action="/dic/dictionary">
 			<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}" />
 			
-			<input class="searchText" type="text" name="searchText" placeholder="검색하세요" 
+			<select name="searchField">
+				<option value="kname" 
+					<c:if test="${pageMaker.cri.searchField == 'kname'}">selected</c:if>>한글이름
+				</option>
+				
+				<option value="ename"
+					<c:if test="${pageMaker.cri.searchField == 'ename'}">selected</c:if>>영문이름
+				</option>
+			</select>
+			
+			<input name="searchText" class="searchText" type="text" placeholder="검색하세요" 
 				value="${pageMaker.cri.searchText}">
 				
-			<input class="searchBt" type="button" value="검색" onclick="document.forms['dicSearchForm'].submit()">				
+			<input class="searchBt" type="button" value="검색" onclick="document.forms['dicsearch'].submit()">
 		</form>
 	</div>
 	
@@ -41,26 +51,23 @@
 
 	<div class="searchBody">
 		<div class="searchContentWrap">
-		
-			<c:forEach items="${dictionin}" var="din">
-				<a href="/dic/dicDetail?seqno=${din.seqno}">
-				
+
+ 			<c:forEach items="${diction}" var="dic">
+				<a href="/dic/dicDetail?seqno=${dic.seqno}">
 					<div class="searchContent">
-							<c:set value="${din.dicthumb.fileType}" var="filetype" />
+							<c:set value="${dic.dicthumb.fileType}" var="filetype" />
 								<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/')) }" var="type" />
 								
 								<c:if test="${type eq 'image'}">
-									<c:set value="${din.dicthumb.fileName}" var="thumb_file" />
+									<c:set value="${dic.dicthumb.fileName}" var="thumb_file" />
 									<img src="/plant/thumb/${thumb_file}">
 								</c:if>
-								<p>${din.kname}</p>
+								<p>${dic.kname}</p>
 					</div>
 				</a>
 			</c:forEach>
-			
 		</div>
-	<p>총레코드 개수 : ${pageMaker.total}</p>
-	
+		<p>총레코드 개수 : ${pageMaker.total}</p>
 	</div>
 		<div class="pagination">
 		<c:if test="${pageMaker.prev}">

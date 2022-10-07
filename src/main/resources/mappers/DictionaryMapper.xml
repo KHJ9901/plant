@@ -6,8 +6,7 @@
 <!--*** 인터페이스 이름(com.plant.mapper.MemberMapper)과 xml의 namespace 속성값이 일치해야함 ****-->
 <mapper namespace="com.plant.mapper.DictionaryMapper">
 
-
-			<!--사전 관련-->
+	<!--사전 관련-->
 
 	<select id="getKname" resultType="com.plant.dto.Dictionary"> <!--인터페이스 메소드 이름-->
 	<!-- ***반드시 dto.Member 에 있는 필드와 프로시저에서 던지는 필드 값이 일치해야!*** -->
@@ -16,27 +15,32 @@
 
 	<select id="dictionList" resultType="com.plant.dto.Dictionary">
 		<![CDATA[
-		     SELECT * 
-		     FROM
-		        (
+		     SELECT * FROM
+		     (
 		        SELECT rownum as rn, z.*
 		        FROM
 		            (
-		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
-		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            SELECT t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.ename, a.seqno
 		            FROM
 		                (
-		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		                	   di.dicimg_seqno, d.kname, d.ename, d.seqno
 		                FROM dictionary_img di, dictionary d
 		                WHERE d.seqno = di.seqno
 		                ) a, dictionary_img_thumb t
 		            WHERE a.dicimg_seqno = t.dicimg_seqno
 		            ) z
-		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        WHERE rownum <= ${cri.currentPage}*${cri.rowPerpage} 
 		        )
-		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
-		]]>
+		    WHERE rn > (${cri.currentPage}-1)*${cri.rowPerpage}
+		 ]]>
 	</select>
+<!-- 	 	            	<WHEN test="searchField == 'kname'">
+		            		AND a.kname LIKE '%' || #{searchText} || '%'
+		            	</WHEN> 
+	 	        		<WHEN test="searchField == 'ename'">
+		        			AND z.ename LIKE '%' || #{searchText} || '%'
+		        		</WHEN>  -->
 	
 	<select id="dictionInList" resultType="com.plant.dto.Dictionary">
 		<![CDATA[

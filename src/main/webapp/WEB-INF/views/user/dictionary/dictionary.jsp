@@ -8,6 +8,8 @@
 
 <link rel="stylesheet" href="/css/dictionary.css">
 
+
+
 <div class="wholePage">
 	<div class="headContainer">
 		<div class="headCategory">
@@ -22,11 +24,24 @@
 		<div class="headSubTitle">본인에게 어울리는 식물을 식물사전에서 검색해 보아요
 		</div>
 	</div>
-	
 	<div class="dicSearch">
-		<form name="dicSearchForm" autocomplete="off">
-			<input type="text" name="searchText" placeholder="검색하세요" value="" />
-			<input type="button" onclick="getSearchList()" class="searchBt" value="검색" />				
+		<form name="dicsearch" method="post" action="/dic/dictionary">
+			<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}" />
+			
+			<select name="searchField">
+				<option value="kname" 
+					<c:if test="${pageMaker.cri.searchField == 'kname'}">selected</c:if>>한글이름
+				</option>
+				
+				<option value="ename"
+					<c:if test="${pageMaker.cri.searchField == 'ename'}">selected</c:if>>영문이름
+				</option>
+			</select>
+			
+			<input name="searchText" class="searchText" type="text" placeholder="검색하세요" 
+				value="${pageMaker.cri.searchText}">
+				
+			<input class="searchBt" type="button" value="검색" onclick="document.forms['dicsearch'].submit()">
 		</form>
 	</div>
 
@@ -36,51 +51,11 @@ function goAction() {
 }
 </script>
 
-<script>
-var seqno = '<c:out value="${dic.seqno}" />';
-
-
-$(document).ready(function(){
-	
-	showResult(1);
-	
-	var currentPage = 1;
-	
-	function showResult(page) {
-		plantSearch.searchResult(bno:seqno, page:page || 1}, function(resultCnt, list) {
-			$("#dicSearchBt").on("click", "div", function(e){
-				console.log("검색 쳐찍어!!!*********************************");
-
-				/* 검색결과 없는 경우 */
-				if(list == null || list.length == 0) {
-					$(".searchContentWrap").html("");
-					return;
-				}
-				
-				console.log("==================구분선===================");
-				/* 내용이 있는 경우 */
-				var str="";
-				for(var i=0, len=list.length || 0; i < len; i++) {
-					console.log(list[i]);
-					str += "<div data-rno='" + list[i].seqno + "'class='dicSearchResult'>" + list[i].kname + "</div>" ;
-				}
-				$(".searchContentWrap").html(str);
-				
-				showReplyPage(replyCnt, currentPage);
-			});
-		});
-	}
-});
-</script>
-
 	<div class="searchBody">
 		<div class="searchContentWrap">
-		
-		</div>
-		
-<%-- 			<c:forEach items="${diction}" var="dic">
+
+ 			<c:forEach items="${diction}" var="dic">
 				<a href="/dic/dicDetail?seqno=${dic.seqno}">
-				
 					<div class="searchContent">
 							<c:set value="${dic.dicthumb.fileType}" var="filetype" />
 								<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/')) }" var="type" />
@@ -91,11 +66,10 @@ $(document).ready(function(){
 								</c:if>
 								<p>${dic.kname}</p>
 					</div>
-					
 				</a>
-			</c:forEach> --%>
-	<p>총레코드 개수 : ${pageMaker.total}</p>
-	
+			</c:forEach>
+		</div>
+		<p>총레코드 개수 : ${pageMaker.total}</p>
 	</div>
 		<div class="pagination">
 		<c:if test="${pageMaker.prev}">
