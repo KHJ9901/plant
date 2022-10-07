@@ -49,13 +49,13 @@
 					   value="${pageMaker.cri.searchText}">	
 				<input type="submit" value="검색">	
 				
-				<select name="rowPerpage" onchange="goAction()" >
-				<c:forEach var="i" begin="5" end="40" step="5">
-				<option value="${i}"
-				 <c:if test="${i == pageMaker.cri.rowPerpage}">selected</c:if>
-				 >${i}개씩</option>
-				</c:forEach>
-				</select>
+				<%-- <select name="rowPerpage" onchange="goAction()" >
+					<c:forEach var="i" begin="5" end="20" step="5">
+					<option value="${i}"
+					 <c:if test="${i == pageMaker.cri.rowPerpage}">selected</c:if>
+					 >${i}개씩</option>
+					</c:forEach>
+				</select> --%>
 			</form>
 		</div>
 		
@@ -66,13 +66,11 @@
 		</script>	
 		
 		<c:forEach items="${adopt}" var="adopt">
-		<li>
+		<li class="adoptList">
 			<div class="aboptBox">
 				<a href="/adopt/adetail?seqno=${adopt.seqno}">
-			 	 <img src="../img/plant2.jpg" alt="plant">
-				</a>
+			 	 <img src="../img/plant2.jpg" alt="plant"></a>
 			</div>
-			
 			<div class="desc">
 				<p> ${adopt.id}</p>
 				<p> ${adopt.wdate}</p>					

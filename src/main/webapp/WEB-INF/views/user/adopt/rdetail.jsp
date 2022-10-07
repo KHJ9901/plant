@@ -38,7 +38,7 @@
 
 				<div class="asd_report">
 					<c:if test="${user.id eq review.id}">
-						<button class="myButton" onclick="location.href='/review/rDetail?seqno=${review.seqno}&page=rModify'">수정</button> 
+						<button class="myButton" onclick="location.href='/review/rdetail?seqno=${review.seqno}&page=rModify'">수정</button> 
 						<button class="myButton" onclick="del_confirm('${review.seqno}')">삭제</button>
 					</c:if>			
 				</div>
@@ -53,7 +53,7 @@
 function del_confirm(seqno){
 	var rs = confirm('정말로 삭제하시겠습니까?');
 	if(rs){
-		location.href = "/review/reviewDelete?seqno=" + seqno;
+		location.href = "/review/rdelete?seqno=" + seqno;
 	}
 }
 </script>

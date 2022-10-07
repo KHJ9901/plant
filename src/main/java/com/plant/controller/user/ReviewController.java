@@ -73,7 +73,7 @@ public class ReviewController {
 		
 		rttr.addFlashAttribute("seqno", reviewService.insertReview(review));
 		
-		return "redirect:rdetail";
+		return "redirect:/adopt/rdetail";
 	}
 	
 	//삭제
@@ -86,7 +86,7 @@ public class ReviewController {
 	
 	//수정
 	@RequestMapping(value="rUpdate", method= RequestMethod.POST)
-	public String update(Review review,
+	public String rUpdate(Review review,
 			   			 MultipartFile filename,
 			   			 HttpSession sess,
 			   			 Model model) throws Exception {

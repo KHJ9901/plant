@@ -17,7 +17,7 @@
 			<%@ include file  = "../adopt/adoptMenu.jsp" %>
 		</div>
 	</div>
-	
+<!-- 박스 -->		
 	<div class="headContainer2">
 		<div class="headNotice">
 			<h1>분 양 후 기</h1>
@@ -28,32 +28,34 @@
 			</c:if>			
 		</div>
 	</div>
-
+<!-- 내용 -->
 	<div class="reviewContainer">
-		<ul class="ulline">
-		
-		<form name="search" method="POST" action="/review/list">
-			<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}">
+		<ul class="cf">
+		<div class="search">
+			<p class="total">전체 게시글 &nbsp;${pageMaker.total}</p>
+			<form name="search" method="POST" action="/review/list">
+				<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}">
+				
+				<select name="search_field">
+				  <option value="content" 
+				  <c:if test="${pageMaker.cri.searchField == 'content'}">selected</c:if>>내용</option>		
+				  <option value="id"
+				  <c:if test="${pageMaker.cri.searchField == 'id'}">selected</c:if>>아이디</option>
+				</select>
 			
-			<select name="search_field">
-			  <option value="content" 
-			  <c:if test="${pageMaker.cri.searchField == 'content'}">selected</c:if>>내용</option>		
-			  <option value="id"
-			  <c:if test="${pageMaker.cri.searchField == 'id'}">selected</c:if>>아이디</option>
-			</select>
-		
-			<input type="text" name="search_text" placeholder="search..." 
-				   value="${pageMaker.cri.searchText}">	
-			<input type="submit" value="검색">
-			
-			<select name="rowPerpage" onchange="goAction()" >
-			<c:forEach var="i" begin="5" end="40" step="5">
-			<option value="${i}"
-			 <c:if test="${i == pageMaker.cri.rowPerpage}">selected</c:if>
-			 >${i}개씩</option>
-			</c:forEach>
-			</select>		
-		</form>	
+				<input type="text" name="search_text" placeholder="search..." 
+					   value="${pageMaker.cri.searchText}">	
+				<input type="submit" value="검색">
+				
+				<select name="rowPerpage" onchange="goAction()" >
+					<c:forEach var="i" begin="5" end="30" step="5">
+					<option value="${i}"
+					 <c:if test="${i == pageMaker.cri.rowPerpage}">selected</c:if>
+					 >${i}개씩</option>
+					</c:forEach>
+				</select>		
+			</form>	
+		</div>
 		
 		<script>
 		function goAction(){
@@ -77,7 +79,6 @@
 		</ul>
 	</div>
 
-	<p>총 레코드 갯수 : ${pageMaker.total}</p>
 	<div class="pageNum">
 		<div class="pageNumDetail">
 			<c:if test="${pageMaker.prev}">

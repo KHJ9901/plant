@@ -11,7 +11,6 @@ img {
 
 li {
   list-style-type: none;
-
   padding: 0;
 }
 
@@ -33,7 +32,7 @@ fieldset, img {
 .adoptContainer {
   padding:  50px 100px 0 100px;
   position: relative;
-  height: 1500px;
+  height: 1300px;
 }
 
 .adoptContainer ul li {
@@ -64,7 +63,13 @@ fieldset, img {
 .search {
   text-align-last: right;
   padding-right: 40px;
+}
 
+.adoptList {
+  display: flex;
+  flex-direction: column;
+  height:480px;
+  list-style: none;
 }
 
 .adoptBox img {

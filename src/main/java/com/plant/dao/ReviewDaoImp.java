@@ -191,16 +191,16 @@ public class ReviewDaoImp implements ReviewDao {
 		}
 
 	public void update(Review review) {
-		String sql = "call p_update_review(?,?,?)";
+		String sql = "call p_update_review(?,?)";
 		Connection conn = null;
 		CallableStatement stmt = null;
 		
 		try {
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
-			stmt.setString(1, review.getApply_seqno());
-			stmt.setString(2, review.getContent());
-			stmt.setString(3, review.getSeqno());
+			/* stmt.setString(1, review.getApply_seqno()); */
+			stmt.setString(1, review.getContent());
+			stmt.setString(2, review.getSeqno());
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
