@@ -42,9 +42,9 @@
 				</div>
 				<c:if test="${user.id eq board.id}">
 				<div class="asd_report">
-				<a href="/bo/boardDetail?seqno=${board.seqno}&page=modify">수정</a>
+				<a href="/board/detail?seqno=${board.seqno}&page=boardmodify">수정</a>
 				<span class="asd_seqarator">|</span>
-				<a href="/bo/boardDelete?seqno=${board.seqno}">삭제</a>
+				<a href="/board/boardDelete?seqno=${board.seqno}">삭제</a>
 				</div>
 				</c:if>				
 			</section>

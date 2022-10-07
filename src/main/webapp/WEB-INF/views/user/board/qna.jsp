@@ -11,7 +11,7 @@
 	<div class="headContainer">
 		<div class="headCategory">
 			<a href="/qna/qnalist">질문·답변</a>  
-			<a href="/bo/board">자유게시판</a>
+			<a href="/board/boardlist">자유게시판</a>
 		</div>
 	</div>
 	

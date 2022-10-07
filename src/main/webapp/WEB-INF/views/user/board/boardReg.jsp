@@ -10,7 +10,7 @@
 <div class="write">
 	<div>
 		<c:set value="${loginUser}" var="user"/>
-		<form method="post" action="write" onsubmit="return check(this)">
+		<form method="post" action="/board/register" onsubmit="return check(this)">
 			<input type="hidden" name="id" value = "${user.id}"> 
 			<table>
 			<tr>

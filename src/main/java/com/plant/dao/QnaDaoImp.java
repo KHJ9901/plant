@@ -223,7 +223,7 @@ public class QnaDaoImp implements QnaDao {
 		String seqno = null;
 		
 		try {
-			String sql="call p_insert_board(?,?,?)";
+			String sql="call p_insert_qna(?,?,?)";
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
 		    StructDescriptor st_qna = StructDescriptor.createDescriptor("OBJ_QNA",conn);
@@ -273,7 +273,7 @@ public class QnaDaoImp implements QnaDao {
 	         seqno = stmt.getString(3);
 	      } catch (SQLException e) {
 	         e.printStackTrace();
-	      }finally {
+	      } finally {
 	         resourceClose(conn, stmt);
 	      }
 

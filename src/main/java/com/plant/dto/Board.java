@@ -3,7 +3,7 @@ package com.plant.dto;
 import java.util.List;
 
 public class Board {
-	private int rn;
+	private String rn;
 	private String seqno;
 	private String title;
 	private String content;
@@ -27,10 +27,10 @@ public class Board {
 	public void setBoardreply(List<BoardReply> boardreply) {
 		this.boardreply = boardreply;
 	}
-	public int getRn() {
+	public String getRn() {
 		return rn;
 	}
-	public void setRn(int rn) {
+	public void setRn(String rn) {
 		this.rn = rn;
 	}
 	public String getSeqno() {

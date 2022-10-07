@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.plant.common.LoginImpl;
 import com.plant.dao.QnaDao;
-import com.plant.dao.QnaDaoImp;
 import com.plant.dto.Criteria;
 import com.plant.dto.Qna;
 import com.plant.dto.Qna_Img;
@@ -39,36 +37,36 @@ public class QnaServiceImp implements QnaService {
 		return askDao.askDetail(seqno);
 	}
 
-	@Override
-	public String Qnanew(HttpServletRequest req, HttpServletResponse resp) {
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setDefaultCharset(CHARSET);
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		
-		Qna qna = new Qna();
-		Qna_Img qnaimg = null;
-		QnaFileService fileService = new  QnaFileServicImp();
-		
-		try {
-			List<FileItem> items = upload.parseRequest(req);
-			for(FileItem item : items) {
-				if(item.isFormField()) {
-					qna = getFormPararmeter(item, qna);
-				} else {
-					qnaimg = fileService.fileUpload(item);
-				}
-			}			
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");	
-		qna.setId(login.getId());
-		
-		return askDao.insert(qna, qnaimg);
-	}
+//	@Override
+//	public String Qnanew(HttpServletRequest req, HttpServletResponse resp) {
+//		DiskFileItemFactory factory = new DiskFileItemFactory();
+//		factory.setDefaultCharset(CHARSET);
+//		ServletFileUpload upload = new ServletFileUpload(factory);
+//		
+//		Qna qna = new Qna();
+//		Qna_Img qnaimg = null;
+//		QnaFileService fileService = new  QnaFileServicImp();
+//		
+//		try {
+//			List<FileItem> items = upload.parseRequest(req);
+//			for(FileItem item : items) {
+//				if(item.isFormField()) {
+//					qna = getFormPararmeter(item, qna);
+//				} else {
+//					qnaimg = fileService.fileUpload(item);
+//				}
+//			}			
+//		} catch (FileUploadException e) {
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");	
+//		qna.setId(login.getId());
+//		
+//		return askDao.insert(qna, qnaimg);
+//	}
 	
 	
 	public String update(Qna qna, MultipartFile filename) {

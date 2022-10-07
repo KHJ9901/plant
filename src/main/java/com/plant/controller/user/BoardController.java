@@ -1,52 +1,82 @@
-//package com.plant.controller.user;
-//
-//import java.io.IOException;
-//import java.io.PrintWriter;
-//import java.util.List;
-//
-//import javax.servlet.RequestDispatcher;
-//import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//import com.cosmos.controller.user.ReplyController;
-//import com.cosmos.dto.Criteria;
-//import com.cosmos.dto.ReplyVo;
-//import com.cosmos.service.ReplyService;
-//import com.plant.dto.Board;
-//import com.plant.service.BoardService;
-//import com.plant.service.BoardServicelmp;
-//
-//@WebServlet(urlPatterns = {"/board/"})
-//public class BoardController extends HttpServlet {
-//	
-//	private static final Logger log = LoggerFactory.getLogger(QnaReplyController.class);
-//
-//	@Autowired
-//	BoardService service;
-//	
-//	@PostMapping(value="add",
-//				 consumes="application/json",
-//				 produces= "text/plain; charset=utf-8")
-//	
-//	
-//	private void doAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		resp.setContentType("text/html; charset=utf8");
-//		req.setCharacterEncoding("utf8");
-//		
-//		String uri = req.getRequestURI();	
-//		String cmd = uri.substring(uri.lastIndexOf("/")+1);
-//		
-//		System.out.println("cmd=" + cmd);
-//		BoardServicelmp boardService = new BoardServicelmp();
-//		
+package com.plant.controller.user;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.plant.common.LoginImpl;
+import com.plant.dto.Board;
+import com.plant.dto.Criteria;
+import com.plant.dto.Page;
+import com.plant.service.BoardService;
+
+@Controller
+@RequestMapping(value="/board/")
+public class BoardController {
+	
+	@Autowired
+	BoardService service;
+	
+	@RequestMapping(value="boardlist", method= {RequestMethod.GET, RequestMethod.POST})
+	public String qnalist(Criteria cri, Model model) {
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+		if(cri.getRowPerpage() == 0) cri.setRowPerpage(5);
+		
+		List<Board> board = service.list(cri);
+		
+		model.addAttribute("pageMaker", new Page(service.getTotalRec(cri), cri));
+		model.addAttribute("board", board);
+		return "/board/board";
+	}
+	
+	@RequestMapping(value="detail", method= RequestMethod.GET)
+	public String detail(@ModelAttribute("seqno") String seqno, @ModelAttribute("page") String page, Model model) {
+		model.addAttribute("board", service.searchBoard(seqno));
+		if(page.equals("boardmodify")) {return "/board/boardmodify";}
+		else {return "/board/boardDetail";}
+	}
+	
+	@RequestMapping(value="boardnew", method= RequestMethod.GET)
+	public String qnanew() {
+		
+		return "/board/boardReg";
+	}
+	@PostMapping("register")
+	public String register(Board board,
+						   HttpSession sess, 
+						   RedirectAttributes rttr) {
+		board.setId(((LoginImpl)sess.getAttribute("loginUser")).getId());
+		
+		rttr.addFlashAttribute("seqno", service.insert(board));
+		return "redirect:/board/detail";
+	}
+	
+	@RequestMapping(value="boardUpdate", method= RequestMethod.POST)
+	public String update(HttpSession sess, Model model, Board board) 
+						throws Exception {
+		
+		LoginImpl login = (LoginImpl)sess.getAttribute("loginUser");	
+		board.setId(login.getId());
+		model.addAttribute("seqno", service.update(board));
+		return "redirect:detail";
+	}
+	
+	@RequestMapping(value="boardDelete", method= RequestMethod.GET)
+	public String Delete(@ModelAttribute("seqno") String seqno) {
+		service.boarddel(seqno);
+		return "redirect:boardlist";
+	}
+		
 //		if(cmd.equals("board")) {
 //			//게시판 리스트
 //			List<Board> board = boardService.list();
@@ -111,4 +141,4 @@
 //		rd.forward(req, resp);
 //
 //	}
-//}
+}

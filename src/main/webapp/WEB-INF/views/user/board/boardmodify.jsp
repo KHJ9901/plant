@@ -9,8 +9,10 @@
 
 <div class="write">
 	<div>
-		<form method="post" action="/bo/modify" onsubmit="return check(this)">
+		<form method="post" action="/board/boardUpdate" onsubmit="return check(this)">
 			<input type = "hidden" placeholder="이름" name= "id" value="${board.id}">
+			<input type = "hidden" name= "seqno" value="${board.seqno}">
+			
 			<table>
 			<tr>
 				<th>제목</th>
