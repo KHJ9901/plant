@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,25 +41,94 @@ public class MemInfoController {
 	private MemInfoService ms;
 
 	@RequestMapping("mypageview")
-	public String mypageview(@ModelAttribute("id") String id, Model model) {
-		Plantmember board = ms.mypage(id);
+	public String mypageview(HttpSession sess, Model model) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		
+		String id = loginUser.getId();
+		Plantmember board = ms.mypage(id);
+		System.out.println("????? : "+ id);
 		model.addAttribute("board", board);
 		return "/member/mypage";
 	}
 	
 	@RequestMapping(value="myboard", method= {RequestMethod.POST, RequestMethod.GET})
-	public String list(Criteria cri, Model model) {
-         
+	public String list(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
-         if(cri.getRowPerpage() == 0) cri.setRowPerpage(3);
+         if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
          
-         List<Board> board = ms.list(cri);
+         List<Board> board = ms.myqnaboard(cri, id);
+         System.out.println("보드!!!!!!!! : " + board.size());
 
          model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
          model.addAttribute("board", board); //요청
-         return"/board/bordlist";
+         return"/member/myboard";
       }
+	
+	@RequestMapping(value="myqnaboard", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list2(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+         if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+         
+         List<Board> board = ms.list(cri, id);
+         System.out.println("보드!!!!!!!! : " + board.size());
+
+         model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+         model.addAttribute("board", board); //요청
+         return"/member/myqnaboard";
+      }
+	
+	@RequestMapping(value="/me/myadoptboard", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list3(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+         if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+         
+         List<Board> board = ms.list(cri, id);
+         System.out.println("보드!!!!!!!! : " + board.size());
+
+         model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+         model.addAttribute("board", board); //요청
+         return"/member/myadoptboard";
+      }
+	
+	@RequestMapping(value="/me/myplantboard", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list4(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+         if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+         
+         List<Board> board = ms.list(cri, id);
+         System.out.println("보드!!!!!!!! : " + board.size());
+
+         model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+         model.addAttribute("board", board); //요청
+         return"/member/myboard";
+      }
+	@RequestMapping(value="/me/myadoptreviewboard", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list5(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+		if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+		
+		List<Board> board = ms.list(cri, id);
+		System.out.println("보드!!!!!!!! : " + board.size());
+		
+		model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+		model.addAttribute("board", board); //요청
+		return"/member/myboard";
+	}
 	
 
 

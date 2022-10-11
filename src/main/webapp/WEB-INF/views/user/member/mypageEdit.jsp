@@ -9,7 +9,7 @@
       <div class="mychange">
       <h2>정보변경</h2>
       </div>
-      
+<form method="post" action="/lo/editsuccese">
       <div class="textForm">
       아이디
         	<input name="id" type="text" class="id" value="${user.id}" readonly>
@@ -60,7 +60,7 @@
       	<div>
      		
       	</div>
-
+</form>
     <%@include file = "../footer.jsp" %>
     <script type="text/javascript" src="/js/Plantmember.js"></script>
     <script>
