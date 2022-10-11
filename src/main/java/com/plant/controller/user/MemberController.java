@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.plant.common.LoginImpl;
 import com.plant.dto.Plantmember;
 import com.plant.service.MemberService;
 
@@ -67,9 +68,9 @@ public class MemberController {
 	
 	@RequestMapping("editmypage")
 	public String editmypage(HttpSession sess, Model model) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		
-		String id = (String)sess.getAttribute("sess_id");
-		
+		String id = loginUser.getId();		
 		Plantmember board = ms.editview(id);
 		
 		model.addAttribute("board", board);

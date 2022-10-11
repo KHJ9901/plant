@@ -64,11 +64,11 @@
 							<div>
 								<input class="bdBottomBt" type="checkbox" name="memselect" value="">
 							</div>
-							<div class="memBdNum" name="no">${board.no}</div>
-							<div class="memBdNum" name="seqno"><a href="/bo/boardDetail?seqno=${board.seqno}">${board.title}</a></div>
+							<div class="memBdNum" name="rn">${board.rn}</div>
+							<div class="memBdNum" name="seqno"><a href="/board/boardDetail?seqno=${board.seqno}">${board.title}</a></div>
 							<%-- <div class="memBdName">${board.name}</div> --%>
 							<div class="memBdId" name="id">${board.id}</div>
-							<div class="memBdWdate name="wdate">${board.wdate}</div>
+							<div class="memBdWdate" name="wdate">${board.wdate}</div>
 							<div class="memBdCount" name="count">${board.count}</div>
 							</div>
 						</c:forEach>

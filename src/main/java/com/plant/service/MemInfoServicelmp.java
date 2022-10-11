@@ -21,10 +21,6 @@ public class MemInfoServicelmp implements MemInfoService{
 	private MemInfoDao mdo;	
 	
 	@Override
-	public List<MemInfo> myboard(String id) {
-		return mdo.myboard(id);
-	}
-	@Override
 	public List<MemInfo> myqnaboard(String id) {
 		return mdo.myqnaboard(id);
 	}
@@ -61,16 +57,14 @@ public class MemInfoServicelmp implements MemInfoService{
 		return mdo.boardDetail(seqno);
 	}
 	@Override
-	public List<Board> list(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> list(Criteria cri, String id) {
+		return mdo.myboard(cri, id);
 	}
 	@Override
 	public int getTotalRec(Criteria cri) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 
 
 }

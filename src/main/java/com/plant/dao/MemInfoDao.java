@@ -1,12 +1,15 @@
 package com.plant.dao;
 
 import java.util.List;
+
+import com.plant.dto.Board;
+import com.plant.dto.Criteria;
 import com.plant.dto.MemInfo;
 import com.plant.dto.Plantmember;
 
 public interface MemInfoDao {
 
-	public List<MemInfo> myboard(String id);
+	public List<Board> myboard(Criteria cri, String id);
 	
 	public List<MemInfo> myqnaboard(String id);
 	
