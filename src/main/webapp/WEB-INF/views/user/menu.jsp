@@ -10,7 +10,7 @@
     <a href="/" class="w3-bar-item w3-button">식물플래너</a>
     <a href="/dic/dictionary" class="w3-bar-item w3-button w3-hide-small">식물사전</a>
     <a href="/adopt/list" class="w3-bar-item w3-button w3-hide-small">분양</a>
-    <a href="/qna/qnalist" class="w3-bar-item w3-button w3-hide-small">게시판</a>
+    <a href="/board/boardlist" class="w3-bar-item w3-button w3-hide-small">게시판</a>
     <c:set value="${loginUser}" var = "loginuser"/>
     <c:if test="${loginuser != null}">
 	    <a href="/diary/list" class="w3-bar-item w3-button w3-hide-small">식물일기</a>

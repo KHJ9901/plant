@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.plant.common.OracleConn;
 
-@Service
+@Repository
 public class QnaFileDao {
 	
 	@Autowired

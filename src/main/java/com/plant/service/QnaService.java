@@ -17,7 +17,7 @@ public interface QnaService {
 	
 	public Qna searchAsk(String seqno);
 	
-	public String Qnanew(HttpServletRequest req, HttpServletResponse resp);
+//	public String Qnanew(HttpServletRequest req, HttpServletResponse resp);
 
 	public String update(Qna qna, MultipartFile filename);
 	
