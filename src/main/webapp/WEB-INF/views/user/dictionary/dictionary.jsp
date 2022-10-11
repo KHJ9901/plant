@@ -21,7 +21,7 @@
 			<h1>식물사전</h1>
 		</div>
 		
-		<div class="headSubTitle">본인에게 어울리는 식물을 식물사전에서 검색해 보아요
+		<div class="headSubTitle">1111111111111111111111111본인에게 어울리는 식물을 식물사전에서 검색해 보아요
 		</div>
 	</div>
 	<div class="dicSearch">
