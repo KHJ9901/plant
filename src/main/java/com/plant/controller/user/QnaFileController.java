@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
+
 import com.plant.service.QnaFileServicImp;
 import com.plant.service.QnaFileService;
 
 
-
+@Controller
 @WebServlet("/qfile/*")
 public class QnaFileController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
     
 	QnaFileService fileservice = new QnaFileServicImp();
  
@@ -46,9 +47,9 @@ public class QnaFileController extends HttpServlet {
 				break;
 			case "fileDel" :
 				String no = request.getParameter("no");
-				String savefile = request.getParameter("savaFileName");
-				String location = request.getParameter("filePath");
-				String thumbnail = request.getParameter("thumb_file");
+				String savefile = request.getParameter("saveFile");
+				String location = request.getParameter("location");
+				String thumbnail = request.getParameter("thumbnail");
 				
 //				System.out.println("no:" +no+ ",savaFileName:" +savefilename);
 //				System.out.println("filePath:"+filepath+",thumb_file:"+thumb_file);

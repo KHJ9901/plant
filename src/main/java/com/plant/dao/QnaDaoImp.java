@@ -367,6 +367,7 @@ public class QnaDaoImp implements QnaDao {
 		PreparedStatement stmt = null;
 		String qnaimg_no = null;
 		try {
+			conn = ds.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, qnaimg.getUploadfile());
 			stmt.setString(2, qnaimg.getSavefile());

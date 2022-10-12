@@ -34,14 +34,14 @@
 	<form name="search" method="POST" action="/board/boardlist">
 		<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}">
 		
-		<select name = "search_field">
+		<select name = "searchField">
 			<option value="title" 
 			<c:if test="${pageMaker.cri.searchField == 'title'}">selected</c:if>>제목</option>
 			<option value="name"
 			<c:if test="${pageMaker.cri.searchField == 'name'}">selected</c:if>>이름</option>
 		</select>
 		
-		<input type="text" name="search_text" placeholder="Search..."
+		<input type="text" name="searchText" placeholder="Search..."
 		value="${pageMaker.cri.searchText}">
 		            		
 		<input type="button" value="검색" onclick="document.forms['search'].submit()">
