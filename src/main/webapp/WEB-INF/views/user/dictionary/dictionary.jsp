@@ -21,7 +21,7 @@
 			<h1>식물사전</h1>
 		</div>
 		
-		<div class="headSubTitle">1111111111111111111111111본인에게 어울리는 식물을 식물사전에서 검색해 보아요
+		<div class="headSubTitle">본인에게 어울리는 식물을 식물사전에서 검색해 보아요
 		</div>
 	</div>
 	<div class="dicSearch">
@@ -57,11 +57,11 @@ function goAction() {
  			<c:forEach items="${diction}" var="dic">
 				<a href="/dic/dicDetail?seqno=${dic.seqno}">
 					<div class="searchContent">
-							<c:set value="${dic.dicthumb.fileType}" var="filetype" />
+							<c:set value="${dic.filetype}" var="filetype" />
 								<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/')) }" var="type" />
 								
 								<c:if test="${type eq 'image'}">
-									<c:set value="${dic.dicthumb.fileName}" var="thumb_file" />
+									<c:set value="${dic.filename}" var="thumb_file" />
 									<img src="/plant/thumb/${thumb_file}">
 								</c:if>
 								<p>${dic.kname}</p>

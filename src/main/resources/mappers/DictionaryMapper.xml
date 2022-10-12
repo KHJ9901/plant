@@ -13,7 +13,7 @@
 		select * from dictionary where seqno = #{seqno} <!--sql 문의 ? 물음표와 같은 것 -->
 	</select>
 
-	<select id="dictionList" resultType="com.plant.dto.Dictionary">
+	<select id="dictionList" resultType="com.plant.dto.DictionaryVO">
 		<![CDATA[
 		     SELECT * FROM
 		     (
@@ -34,65 +34,75 @@
 		        )
 		    WHERE rn > (${cri.currentPage}-1)*${cri.rowPerpage}
 		 ]]>
+			<if test="cri.searchField == 'kname'">
+		        AND kname LIKE '%' || #{cri.searchText} || '%'
+		   </if> 
+		   <if test="cri.searchField == 'ename'">
+				AND ename LIKE '%' || #{cri.searchText} || '%'
+			</if> 
 	</select>
-<!-- 	 	            	<WHEN test="searchField == 'kname'">
-		            		AND a.kname LIKE '%' || #{searchText} || '%'
-		            	</WHEN> 
-	 	        		<WHEN test="searchField == 'ename'">
-		        			AND z.ename LIKE '%' || #{searchText} || '%'
-		        		</WHEN>  -->
-	
-	<select id="dictionInList" resultType="com.plant.dto.Dictionary">
+	 
+	<select id="dictionInList" resultType="com.plant.dto.DictionaryVO">
 		<![CDATA[
-		     SELECT * 
-		     FROM
-		        (
+		     SELECT * FROM
+		     (
 		        SELECT rownum as rn, z.*
 		        FROM
 		            (
-		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
-		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            SELECT t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.ename, a.seqno, a.lcate
 		            FROM
 		                (
-		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		                	   di.dicimg_seqno, d.kname, d.ename, d.seqno, d.lcate
 		                FROM dictionary_img di, dictionary d
 		                WHERE d.seqno = di.seqno
-                		AND lcate = '실내용'		                
 		                ) a, dictionary_img_thumb t
 		            WHERE a.dicimg_seqno = t.dicimg_seqno
+		            AND lcate = '실내용'
 		            ) z
-		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        WHERE rownum <= ${cri.currentPage}*${cri.rowPerpage} 
 		        )
-		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
-		]]>	
+		    WHERE rn > (${cri.currentPage}-1)*${cri.rowPerpage}
+		 ]]>
+			<if test="cri.searchField == 'kname'">
+		        AND kname LIKE '%' || #{cri.searchText} || '%'
+		   </if> 
+		   <if test="cri.searchField == 'ename'">
+				AND ename LIKE '%' || #{cri.searchText} || '%'
+			</if> 
 	</select>
 	
-	<select id="dictionOutList" resultType="com.plant.dto.Dictionary">
+	<select id="dictionOutList" resultType="com.plant.dto.DictionaryVO">
 		<![CDATA[
-		     SELECT * 
-		     FROM
-		        (
+		     SELECT * FROM
+		     (
 		        SELECT rownum as rn, z.*
 		        FROM
 		            (
-		            SELECT /*+INDEX(dictionary PK_DICTIONARY) */
-		            	   t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.seqno
+		            SELECT t.no, t.filename, t.filesize, t.filetype, t.filepath, a.kname, a.ename, a.seqno, a.lcate
 		            FROM
 		                (
-		                SELECT di.dicimg_seqno, d.kname, d.seqno
+		                SELECT /*+INDEX(dictionary PK_DICTIONARY) */
+		                	   di.dicimg_seqno, d.kname, d.ename, d.seqno, d.lcate
 		                FROM dictionary_img di, dictionary d
 		                WHERE d.seqno = di.seqno
-                		AND lcate = '야외용'		                
 		                ) a, dictionary_img_thumb t
 		            WHERE a.dicimg_seqno = t.dicimg_seqno
+		            AND lcate = '야외용'
 		            ) z
-		        WHERE rownum <= ${cri.currentPage} * ${cri.rowPerPage} 
+		        WHERE rownum <= ${cri.currentPage}*${cri.rowPerpage} 
 		        )
-		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
-		]]>		
+		    WHERE rn > (${cri.currentPage}-1)*${cri.rowPerpage}
+		 ]]>
+			<if test="cri.searchField == 'kname'">
+		        AND kname LIKE '%' || #{cri.searchText} || '%'
+		   </if> 
+		   <if test="cri.searchField == 'ename'">
+				AND ename LIKE '%' || #{cri.searchText} || '%'
+			</if> 	
 	</select>
 
-	<select id="dictionDetail" resultType="com.plant.dto.Dictionary">
+	<select id="dictionDetail" resultType="com.plant.dto.DictionaryVO">
 	    SELECT d.seqno, d.kname, d.ename, d.lcate, d.water, d.place, d.temp, d.moist, d.etc,
 	    	   (select code_name from cate_code c where c.code_val = d.cate) as cate,
 	    	   di.*
@@ -101,7 +111,7 @@
 	    AND di.seqno = d.seqno
 	</select> 
 	
-	<insert id="dictionInsert" parameterType="com.plant.dto.Dictionary">
+	<insert id="dictionInsert" parameterType="com.plant.dto.DictionaryVO">
 	BEGIN
 	    INSERT INTO dictionary(seqno, kname, ename, lcate, water, place, temp, moist, etc, cate)
 	    VALUES (dictionary_seqno.NEXTVAL, #{kname}, #{ename}, #{lcate}, #{water}, 
@@ -150,7 +160,7 @@
 
 		<!--회원 식물 관련 -->
 		
-	<select id="mplantList" resultType="com.plant.dto.Mplant">
+	<select id="mplantList" resultType="com.plant.dto.MplantVO">
 		<![CDATA[
 		     SELECT * 
 		     FROM
@@ -172,10 +182,13 @@
 		        )
 		    WHERE rn > (${cri.currentPage}-1) * ${cri.rowPerPage}
 		]]>	
+		    <if test="cri.searchText != null">
+		        AND name LIKE '%' || #{cri.searchText} || '%'
+		    </if> 
 	</select>
 	
 	
-	<select id="mplantDetail" resultType="com.plant.dto.Mplant">
+	<select id="mplantDetail" resultType="com.plant.dto.MplantVO">
         SELECT (select code_name from cate_code c where c.code_val = m.cate) as cate,
 				m.mplant_seqno, m.name, m.water, m.place, 
 				m.temp, m.moist, m.etc, m.plevel, m.id,
@@ -186,26 +199,30 @@
 
 	</select>
 	
-	<insert id="mplantInsert" parameterType="com.plant.dto.Mplant">
+	<insert id="mplantInsert">
+	DECLARE
+		v_seqno number;
+		v_img_seqno number;
 	BEGIN
-	
+		
+		select mpla_seqno.NEXTVAL into v_seqno from dual;
+		
 	    INSERT INTO mplant(mplant_seqno, name, water, place, temp, moist, etc, cate, plevel, id)
-	    VALUES (mpla_seqno.NEXTVAL, #{name}, #{water}, #{place}, #{temp}, 
+	    VALUES (v_seqno, #{name}, #{water}, #{place}, #{temp}, 
 	            #{moist}, #{etc}, #{cate}, #{plevel}, #{id});
 
-	    <if test="mpimg != null">
+		select MPLANT_IMG_SEQNO.NEXTVAL into v_img_seqno from dual;
+ 	    <!-- <if test="filename.fileSize > 0"> -->
 		    INSERT INTO mplant_img(MPI_SEQNO, uploadfile, savefile, filesize, type, location, MPLANT_SEQNO)
-		    VALUES (MPLANT_IMG_SEQNO.NEXTVAL, #{filename}, #{savefilename}, #{filesize},
-		            #{filetype}, #{filepath}, #{mplant_seqno);
-		</if>
-		
-	    <if test="mpthumb != null">
-		    INSERT INTO mplant_img_thumb(no, filename, filesize, filepath, filetype, MPI_SEQNO)
+		    VALUES (v_img_seqno, #{filename}, #{savefilename}, #{filesize},
+		            #{filetype}, #{filepath}, v_seqno);
+
+	    <!-- <if test="filename.fileSize > 0"> -->
+ 		    INSERT INTO mplant_img_thumb(no, filename, filesize, filepath, filetype, MPI_SEQNO)
 		    VALUES (MPLANT_THUMB_SEQ.NEXTVAL,
-		            #{fileName}, #{fileSize}, #{filePath},
-		            #{fileType}, #{no});
-	    </if>
-	END
+		            #{thumbfilename}, #{thumbfilesize}, #{thumbfilepath},
+		            #{thumbfiletype}, v_img_seqno);
+	END;
 	</insert>
 	
 	<update id="mplantUpdate">

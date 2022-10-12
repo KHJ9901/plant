@@ -11,20 +11,17 @@
 
 	<div class="detailHead">
 	<c:set value="${mplantdetail}" var="md" />
-		<c:forEach items="${md.mpimg}" var="mpimg" >
-		
-			<c:set value="${mpimg.fileType}" var="mpitype" />
+			<c:set value="${md.type}" var="mpitype" />
 			
 			<div class="detailImg">
 			
 				<c:set value="${fn:substring(mpitype, 0, fn:indexOf(mpitype, '/'))}" var="type" />
 				
 				<c:if test="${type eq 'image'}">
-					<c:set value="${mpimg.fileName}" var="img_file" />
+					<c:set value="${md.uploadfile}" var="img_file" />
 					<img src="/plant/${img_file}">
 				</c:if> 
 			</div>
-		</c:forEach>
 		
 		<div class="detailHeadTitle">
 		
