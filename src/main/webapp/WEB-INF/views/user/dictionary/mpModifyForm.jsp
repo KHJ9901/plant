@@ -16,31 +16,28 @@
 	
 		<div class="mpRegHead">
 	 		<div class="mpRegImg">
-				<c:forEach items="${md.mpimg}" var="mpi" >
 				<c:choose>
-					<c:when test="${empty mpi}">
+					<c:when test="${md.filename == null}">
 						<input type="file" name="filename">
 					</c:when>
 					
-					<c:when test="${!empty mpi}">
-						<c:set value="${mpi}" var="img" />
-							<c:set value="${img.fileType}" var="filetype" />
-							<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/'))}" var="type" />
+					<c:when test="${md.filename != null}">
+						<c:set value="${md.filetype}" var="filetype" />
+						<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/'))}" var="type" />
+						
+						<div id="fileSector">
+						
+							<c:if test="${type eq 'image'}">
+								<c:set value="${md.savefilename}" var="img_file" />
+								<img src="/upload/${img_file}">
+							</c:if>
 							
-							<div id="fileSector">
-							
-								<c:if test="${type eq 'image'}">
-									<c:set value="${img.mpthumb.fileName}" var="thumb_file" />
-									<img src="/plant/thumb/${thumb_file}">
-								</c:if>
-								
-								${img.fileName} (사이즈:${img.fileSize})
-								<input type="button" value="삭제" onclick="fileDel('${img.fileName}', '${img.saveFileName}', '${img.filePath}', '${thumb_file}')">
-							</div>
+							${md.filename} (사이즈:${md.filesize})
+							<input type="button" value="삭제" onclick="fileDel('${md.filename}', '${md.savefilename}', '${md.filepath}', '${md.thumbfilename}')">
+						</div>
 					</c:when>
 					
 				</c:choose>
-				</c:forEach>
 				<p>식물사진을 업로드 해주세요</p>
 			</div>
 			

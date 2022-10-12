@@ -29,7 +29,7 @@ public class DicImgServiceImp implements DicImgFileService{
 		long fileSize = item.getSize();
 		
 		if(fileSize > 0) {
-			String fileUploadPath = "d:/khj/plant/";
+			String fileUploadPath = "d:/plant/upload/";
 			String fileName = item.getOriginalFilename();
 			
 			int idx = fileName.lastIndexOf(".");
@@ -71,7 +71,7 @@ public class DicImgServiceImp implements DicImgFileService{
 	public DicThumb setDicThumb(File file, String saveFileName) {
 		//썸네일 파일 저장
 		String thumbFileName = "thumb_200x200" + "_" + saveFileName;
-		String thumbFilePath = "d:/khj/plant/thumb/";
+		String thumbFilePath = "d:/plant/upload/tmp/";
 		File thumbFile = new File(thumbFilePath + thumbFileName);
 		
 		try {
@@ -104,7 +104,7 @@ public class DicImgServiceImp implements DicImgFileService{
 		
 		//썸네일 삭제
 		if(thumb_filename != null && rs == 1) {
-			File thumb_file = new File(filepath + "thumb/" + thumb_filename);
+			File thumb_file = new File(filepath + "tmp/" + thumb_filename);
 			if(thumb_file.exists()) {
 				thumb_file.delete();
 			}
@@ -123,7 +123,7 @@ public class DicImgServiceImp implements DicImgFileService{
 			System.out.println("회원식물 사진 사이즈 쳐찍어 : " + fileSize);
 		
 		if(fileSize > 0) {
-			String fileUploadPath = "d:/khj/plant/";
+			String fileUploadPath = "d:/plant/upload/";
 			String fileName = item.getOriginalFilename();
 				System.out.println("회원식물 사진 파일이름 쳐찍어 : " + fileName);
 			int idx = fileName.lastIndexOf(".");
@@ -164,7 +164,7 @@ public class DicImgServiceImp implements DicImgFileService{
 	public MplantThumb setMpThumb(File file, String saveFileName) {
 		//썸네일 파일 저장
 		String thumbFileName = "thumb_200x200" + "_" + saveFileName;
-		String thumbFilePath = "d:/khj/plant/thumb/";
+		String thumbFilePath = "d:/plant/upload/tmp/";
 		File thumbFile = new File(thumbFilePath + thumbFileName);
 		
 		try {
@@ -196,7 +196,7 @@ public class DicImgServiceImp implements DicImgFileService{
 		
 		//썸네일 삭제
 		if(thumb_filename != null && rs == 1) {
-			File thumb_file = new File(filepath + "thumb/" + thumb_filename);
+			File thumb_file = new File(filepath + "tmp/" + thumb_filename);
 			if(thumb_file.exists()) {
 				thumb_file.delete();
 			}

@@ -131,22 +131,25 @@ public class DicController {
 		
 		mplant.setId(((LoginImpl)sess.getAttribute("loginUser")).getId());
 		
+		
 		rttr.addFlashAttribute("seqno", ds.insertMp(mplant, ffffffffff)); 
 			// addFlash는 객체를 담음
+		int no =  ds.insertMp(mplant, ffffffffff);
+		System.out.println(no);
 		
-		return "redirect:mplantDetail";
+		return "redirect:/dic/mplantDetail";
 	}
 
 	
 	
 //-----------------------------회원 식물 수정--------------------------------------------
 	@PostMapping("updateMplant")
-	public String update (Mplant mplant, 
-						   MultipartFile filename,
+	public String update (MplantVO mplant, 
+						   MultipartFile ffffffffff,
 						   HttpSession sess,
 						   RedirectAttributes rttr) { //리다이렉트 할때 필요함
 		mplant.setId(((LoginImpl)sess.getAttribute("loginUser")).getId());
-		rttr.addFlashAttribute("seqno", ds.updateMp(mplant, filename)); 
+		rttr.addFlashAttribute("seqno", ds.updateMp(mplant, ffffffffff)); 
 			// addFlash는 객체를 담음
 		
 		return "redirect:memPlantDetail";
@@ -155,10 +158,11 @@ public class DicController {
 	
 	
 //-----------------------------회원 식물 삭제--------------------------------------------
-	@PostMapping("deleteMplant")
-	public String register(Mplant mplant, 
-						   String seqno,
-						   HttpSession sess) {
+	//@PostMapping("deleteMplant")
+	@RequestMapping(value="deleteMplant", method= {RequestMethod.POST, RequestMethod.GET})
+	public String deleteMplant(MplantVO mplant, 
+						   	   String seqno,
+						   	   HttpSession sess) {
 		
 		mplant.setId(((LoginImpl)sess.getAttribute("loginUser")).getId());
 		

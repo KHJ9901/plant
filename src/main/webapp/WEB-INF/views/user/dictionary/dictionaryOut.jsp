@@ -58,8 +58,8 @@
 								<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/')) }" var="type" />
 								
 								<c:if test="${type eq 'image'}">
-									<c:set value="${dic.filename}" var="thumb_file" />
-									<img src="/plant/thumb/${thumb_file}">
+									<c:set value="${dic.thumbfilename}" var="thumb_file" />
+									<img src="/upload/tmp/${thumb_file}">
 								</c:if>
 								<p>${dic.kname}</p>
 					</div>

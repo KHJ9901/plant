@@ -12,15 +12,15 @@
 
 	<div class="detailHead">
 	<c:set value="${dictiondetail}" var="dt" />
-		<c:set value="${dt.type}" var="filetype" />
-		
+		<c:set value="${dt.filetype}" var="filetype" />
+
  		<div class="detailImg">
 		
 			<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/'))}" var="type" />
 			
 			<c:if test="${type eq 'image'}">
-				<c:set value="${dt.uploadfile}" var="img_file" />
-				<img src="/plant/${img_file}">
+				<c:set value="${dt.savefilename}" var="img_file" />
+				<img src="/upload/${img_file}">
 			</c:if> 
 		</div>
 		

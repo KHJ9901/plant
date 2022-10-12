@@ -43,7 +43,7 @@ public interface DictionaryMapper {
 	public int mplantInsert(MplantVO mplant);
 	
 	//수정
-	public int mplantUpdate(Mplant mplant, MplantImg mpImgUpload);
+	public int mplantUpdate(MplantVO mplant, MplantImg mpImgUpload);
 	
 	//삭제
 	public int mplantDelete(String seqno);
