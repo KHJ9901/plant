@@ -47,7 +47,7 @@
 								<div id="fileSector">
 								<c:if test="${type eq 'image'}">
 									<c:set value="${file.thumbnail.filename}" var="thumb_file" />
-									<img src="/fileupload/thumbnail/${thumb_file}">
+									<img src="/upload/tmp/${thumb_file}">
 								</c:if>
 								<input type="button" value="삭제" onclick="fileDel('${file.qiseqno}', '${file.savefile}', '${file.location}', '${thumb_file}')">
 								</div>

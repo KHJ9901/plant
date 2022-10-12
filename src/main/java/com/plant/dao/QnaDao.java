@@ -25,7 +25,7 @@ public interface QnaDao {
 	
 	void insertQna_Thumbnail(String qnaimg_no, Qna_Img qnaimg);
 	
-	String insertQna_img(String seqno, Qna_Img qnaimg);
+//	String insertQna_img(String seqno, Qna_Img qnaimg);
 	
 	public void update(Qna qna, Qna_Img qnaimg);
 	

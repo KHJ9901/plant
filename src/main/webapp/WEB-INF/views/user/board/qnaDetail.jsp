@@ -42,7 +42,7 @@
 				<c:set value="${ask.qna_img}" var="qnaimg" />
 				<c:if test ="${qnaimg != null}">
 					<c:forEach items="${qnaimg}" var="img">
-						<form class="ask_file" name="filedown" method="post" action="/qfile/fileDown">
+						<form class="ask_file" name="filedown" method="post" action="/plant/qfile/fileDown">
 							<input type="hidden" name ="filename" value="${img.uploadfile}">
 						  	<input type="hidden" name ="savefilename" value="${img.savefile}">
 						  	<input type="hidden" name ="filepath" value="${img.location}">
@@ -52,7 +52,7 @@
 					
 							<c:if test="${type eq 'image'}">
 								<c:set value="${img.thumbnail.filename}" var="thumb_file" />
-								<img src="/upload/tmp/${thumb_file}">${img.thumbnail.filename}
+								<img src="/upload/tmp/${thumb_file}">
 							</c:if>
 						</form>
 					</c:forEach>
@@ -244,7 +244,7 @@ $(document).ready(function(){
 			
 			/* 댓글이 새롭게 등록 된 경우 */
 			if(page == -1) {
-				currentPage = Math.ceil(qnaCnt/5.0);
+				currentPage = Math.ceil(replyCnt/5.0);
 				showList(currentPage);
 				return;
 			}

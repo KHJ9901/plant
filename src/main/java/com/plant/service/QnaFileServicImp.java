@@ -165,7 +165,6 @@ public class QnaFileServicImp implements QnaFileService{
 	@Override
 	public Qna_Img fileUpload(MultipartFile item) {
 	Qna_Img qna_img = null;
-		System.out.println(item.getSize());
 		long filesize= item.getSize();
 		System.out.println("업로드 파일사이즈 : " + filesize);
 		if(filesize >0) {
