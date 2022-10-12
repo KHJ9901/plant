@@ -34,9 +34,35 @@
 				</div>
 				
 				<hr class="asd_line">
-				<div class="asd_station"><span><img src="/img/map.png" alt="station">${adopt.station}</span></div>
+				<div class="asd_station">
+				<span><img src="/img/map.png" width="15px" alt="station">${adopt.station}</span></div>
+				
+				<!-- 내용 -->
 				<div class="asd_content">${adopt.content}</div>
 				
+				<!--첨부파일-->
+				<div class="adoptfile">
+				<c:set value="${adopt.adoptFile}" var="adoptfile" />
+				<c:if test ="${adoptfile != null}">
+					<c:forEach items="${adoptfile}" var="file">
+						<form class="ask_file" name="filedown" method="post" action="/plant/file/fileDown">
+						<input type="hidden" name ="filename" value="${file.filename}">
+					  	<input type="hidden" name ="savefilename" value="${file.savefilename}">
+					  	<input type="hidden" name ="filepath" value="${file.filepath}">
+					  	<input type="hidden" name="filesize" value="${file.filesize}">
+					
+							<c:set value="${file.filetype}" var="filetype" />
+							<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype,'/'))}" var="type"/>
+					
+							<c:if test="${type eq 'image'}">
+								<c:set value="${file.thumbnail.fileName}" var="thumb_file" />
+								<img src="/upload/thumbnail/${thumb_file}">
+							</c:if>
+							<!-- <input type="submit" value="다운로드"> -->
+						</form>
+					</c:forEach>
+				</c:if>				
+				</div>
 				<hr class="asd_line">
 				<div class="asd_info">
 					<span class="data">식물</span>${adopt.pname}<br>
@@ -45,44 +71,6 @@
 					<span class="data">온도</span>${adopt.temp}<br>
 					<span class="data">습도</span>${adopt.moist}<br>
 				</div>
-
-			<!-- 첨부파일
-				<hr class="asd_line">
-				<div>
-				<c:set value="${ask.qna_img}" var="qnaimg" />
-				<c:if test ="${qnaimg != null}">
-					<c:forEach items="${qnaimg}" var="img">
-						<form class="ask_file" name="filedown" method="post" action="/plant0812/file/fileDown">
-							<input type="hidden" name ="filename" value="${img.uploadfile}">
-						  	<input type="hidden" name ="savefilename" value="${img.savefile}">
-						  	<input type="hidden" name ="filepath" value="${img.location}">
-						
-							<c:set value="${img.type}" var="filetype" />
-							<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype,'/')) }" var="type"/>
-					
-							<c:if test="${type eq 'image'}">
-								<c:set value="${img.thumbnail.filename}" var="thumb_file" />
-								<img src="/fileupload/thumbnail/${thumb_file}">
-							</c:if>
-						</form>
-					</c:forEach>
-				</c:if>				
-				</div> -->
-				
-				
-<%-- 				<div class="asd_bottom_group">
-					<button class="asd_qna">
-						<br class="asd_down_only">
-						답변 ${ask.reply}
-					</button>
-					
-					<span class="asd_seqarator">|</span>
-					<button class="asd_helpful">
-						<br class="asd_down_only">
-						<c:set value="${loginUser}" var="user"/>
-						<a href="/qn/qnaLike?seqno=${ask.seqno}&id=${ask.id}">도움돼요 ${ask.like}</a>
-					</button>
-				</div> --%>
 				
 				<div class="asd_report">
 				<c:if test="${user.id eq adopt.id}">
@@ -153,35 +141,6 @@
 	</div>
 <%@include file="../footer.jsp" %>
 </div>
-
-		<!-- 첨부파일
-		<div>
-		<c:set value = "${adopt.adoptFile}" var="adoptfile" />
-		${adoptfile}
-		<c:if test="${adoptfile != null}">
-			<c:forEach items="${adoptfile}" var="file">
-			
-				<form name="filedown" method="post" action="/file/fileDown">
-				<input type="hidden" name="filename" value="${file.filename}">
-				<input type="hidden" name="savefilename" value="${file.savefilename}">
-				<input type="hidden" name="filepath" value="${file.filepath}">
-				<input type="hidden" name="filesize" value="${file.filesize}">
-				
-					<c:set value="${file.filetype}" var="filetype" />
-					<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/'))}" var="type" />
-					
-					<c:if test="${type eq 'image'}">
-						<c:set value="${file.adoptthumb.fileName}" var="thumb_file" />
-						<img src="/plant/upload/thumbnail/${thumb_file}">
-					</c:if>
-					
-					${file.filename} (사이즈:${file.filesize} bytes)
-					<input type="submit" value="다운로드">
-				</form>
-			</c:forEach>
-		</c:if>
-		</div>
-		  -->
 
  		<div id="reply_modal">
 			<div class="modal-content">

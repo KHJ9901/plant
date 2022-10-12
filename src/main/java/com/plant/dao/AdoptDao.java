@@ -11,21 +11,20 @@ public interface AdoptDao {
 	
 	public List<Adopt> adoptList(Criteria cri);
 	
+	public int getTotalRec(Criteria cri);
+	
 	public Adopt adetail(String seqno);
 		
-	public String insert(Adopt adopt);
+	public String insert(Adopt adopt, AdoptFile adoptfile);
 	
-	public String insertAdopt(Adopt adopt);
+	//public String insertAdopt(Adopt adopt);
 	
 	void insertAdoptThumb (String attach_no, AdoptFile adoptfile);
 	
 	String insertAdoptFile(String seqno, AdoptFile adoptfile);
 	
-	public void update(Adopt adopt);
+	public void update(Adopt adopt, AdoptFile adoptfile);
 			
-	public int getTotalRec(Criteria cri);
-	
 	public Map<String, String> adoptdel(String seqno);
-	
 		
 }

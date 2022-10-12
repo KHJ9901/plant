@@ -65,13 +65,13 @@ public class AdoptController {
 	//등록
 	@PostMapping("aRegister")
 	public String aRegister(Adopt adopt,
-						   MultipartFile filename,
+						   MultipartFile files,
 						   HttpSession sess,
 						   RedirectAttributes rttr) {
 		
 		adopt.setId(((LoginImpl)sess.getAttribute("loginUser")).getId());
 		
-		rttr.addFlashAttribute("seqno", adoptService.insertAdopt(adopt));
+		rttr.addFlashAttribute("seqno", adoptService.insertAdopt(adopt, files));
 		
 		return "redirect:/adopt/adetail";
 	}
@@ -95,7 +95,7 @@ public class AdoptController {
 		LoginImpl login = (LoginImpl)sess.getAttribute("loginUser");	
 		adopt.setId(login.getId());
 		
-		model.addAttribute("seqno", adoptService.update(adopt));
+		model.addAttribute("seqno", adoptService.update(adopt, filename));
 		return "redirect:adetail";
 		
 	}
