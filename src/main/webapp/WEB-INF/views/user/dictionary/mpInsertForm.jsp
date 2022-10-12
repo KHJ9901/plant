@@ -17,7 +17,7 @@
 	
 		<div class="mpRegHead">
 	 		<div class="mpRegImg">
-				<input type="file" name="filename">
+				<input type="file" name="ffffffffff">
 				<p>식물사진을 업로드 해주세요</p>
 			</div>
 			
@@ -78,7 +78,6 @@
 		</div>
 		
 			<input class="mpRegBt" type="submit" value="식물등록">
-
 		
 		<hr class="fifthHr">
 	</form>
@@ -88,6 +87,7 @@
 			alert("난이도를 선택하세요");
 			return false;
 		}
+		console.log("zz");
 		return true;
 	}
 </script>

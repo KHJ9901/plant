@@ -9,6 +9,8 @@ public class MplantImg {
 	private String fileSize;
 	private String fileType;
 	private MplantThumb mpthumb;
+	
+	
 	public String getNo() {
 		return no;
 	}

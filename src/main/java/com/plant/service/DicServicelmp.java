@@ -29,34 +29,34 @@ public class DicServicelmp implements DicService{
 	
 	//---------------리스트 조회--------------------//
 	@Override
-	public List<Dictionary> list(Criteria cri) {
+	public List<DictionaryVO> list(Criteria cri) {
 		return dicmapper.dictionList(cri);
 	}
 	
 	@Override
-	public List<Dictionary> inList(Criteria cri) {
+	public List<DictionaryVO> inList(Criteria cri) {
 		return dicmapper.dictionInList(cri);
 	}
 
 	@Override
-	public List<Dictionary> outList(Criteria cri) {
+	public List<DictionaryVO> outList(Criteria cri) {
 		return dicmapper.dictionOutList(cri);
 	}
 
 	@Override
-	public List<Mplant> mpList(Criteria cri) {
+	public List<MplantVO> mpList(Criteria cri) {
 		return dicmapper.mplantList(cri);
 	}
 	
 	
 	//---------------상세페이지--------------------//
 	@Override
-	public Dictionary DicDetail(String seqno) {
+	public DictionaryVO DicDetail(String seqno) {
 		return dicmapper.dictionDetail(seqno);
 	}
 	
 	@Override
-	public Mplant MpDetail(String seqno) {
+	public MplantVO MpDetail(String seqno) {
 		return dicmapper.mplantDetail(seqno);
 	}
 	
@@ -69,9 +69,20 @@ public class DicServicelmp implements DicService{
 	}
 	
 	@Override
-	public int insertMp(Mplant mplant, MultipartFile files) {
+	public int insertMp(MplantVO mplant, MultipartFile files) {
 		
-		return dicmapper.mplantInsert(mplant, mpfs.mpImgUpload(files));
+		MplantImg filename = mpfs.mpImgUpload(files);
+		mplant.setFilename(filename.getFileName());
+		mplant.setFilepath(filename.getFilePath());
+		mplant.setFiletype(filename.getFileType());
+		mplant.setFilesize(filename.getFileSize());
+		
+		mplant.setThumbfilename(filename.getMpthumb().getFileName());
+		mplant.setThumbfilepath(filename.getMpthumb().getFilePath());
+		mplant.setThumbfilesize(filename.getMpthumb().getFileSize());
+		mplant.setThumbfiletype(filename.getMpthumb().getFileType());
+		
+		return dicmapper.mplantInsert(mplant);
 	}
 	
 	

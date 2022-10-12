@@ -5,9 +5,18 @@ public class Criteria {
 	private int rowPerpage;
 	private String searchField;
 	private String searchText;
+	private String filename;
 	
 	public Criteria() {
 		super();
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	public Criteria(int currentPage, int rowPerpage) {
