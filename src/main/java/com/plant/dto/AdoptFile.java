@@ -9,10 +9,16 @@ public class AdoptFile {
 	private String filepath;
 	private String filesize;
 	private String filetype;
-	private AdoptThumb adoptthumb;
+	private AdoptThumb thumbnail;
 	
 	public AdoptFile() {
 		super();
+	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public String getAdopt_seqno() {
 		return adopt_seqno;
@@ -50,19 +56,13 @@ public class AdoptFile {
 	public void setFiletype(String filetype) {
 		this.filetype = filetype;
 	}
+	public AdoptThumb getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(AdoptThumb thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 
-	public String getNo() {
-		return no;
-	}
-	public void setNo(String no) {
-		this.no = no;
-	}
-	public AdoptThumb getAdoptthumb() {
-		return adoptthumb;
-	}
-	public void setAdoptthumb(AdoptThumb adoptthumb) {
-		this.adoptthumb = adoptthumb;
-	}
 
 	
 }

@@ -1,6 +1,8 @@
 package com.plant.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.plant.common.LoginImpl;
 import com.plant.dao.AdoptDao;
@@ -37,67 +40,13 @@ public class AdoptServiceImp implements AdoptService {
 	}
 	
 	@Override
-	public String insertAdopt(HttpServletRequest req, HttpServletResponse resp) {
-		
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setDefaultCharset(CHARSET);
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		 
-		Adopt adopt = new Adopt();
+	public String update(Adopt adopt, MultipartFile files) {
 		AdoptFile adoptfile = null;
-		AdoptFileService adoptFileService = new AdoptFileServiceImp();
+		AdoptFileService fileService = new AdoptFileServiceImp();
+		adoptfile  = fileService.fileUpload(files);
 		
-		try {
-			List<FileItem> items = upload.parseRequest(req);
-			for(FileItem item : items) {
-				if(item.isFormField()) {
-					adopt = getFormParameter(item, adopt);
-					
-				} else {
-					adoptfile = adoptFileService.fileUpload(item);
-				}
-			}
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");
-		adopt.setId(login.getId());
+		adoptDao.update(adopt, adoptfile);
 		
-		return adoptDao.insert(adopt);
-	}
-
-	public String update(HttpServletRequest req, HttpServletResponse resp) {
-		
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setDefaultCharset(CHARSET);
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		
-		Adopt adopt = new Adopt();
-		AdoptFile adoptfile = null;
-		AdoptFileService adoptFileService = new AdoptFileServiceImp();
-		
-		try {
-			List<FileItem> items = upload.parseRequest(req);
-			for(FileItem item : items) {
-				if(item.isFormField()) {
-					adopt = getFormParameter(item, adopt);
-				} else {
-					adoptfile = adoptFileService.fileUpload(item);
-				}
-			}
-		
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");
-		adopt.setId(login.getId());
-		
-		adoptDao.update(adopt);
 		return adopt.getSeqno();
 	}
 	
@@ -137,25 +86,113 @@ public class AdoptServiceImp implements AdoptService {
 		return adoptDao.getTotalRec(criteria);
 	}
 	
+	@Override
 	public void adoptdel(String seqno) {
-		adoptDao.adoptdel(seqno);
+		
+		Map<String, String> map = adoptDao.adoptdel(seqno);
+		
+		String savefilename = map.get("savefilename");
+		String filepath = map.get("filepath");
+		String thumb_filename = map.get("thumb_filename");
+		
+		if(savefilename != null) {
+			//첨부파일삭제
+			File file = new File(filepath+savefilename);
+			if(file.exists()) {
+				file.delete();
+			}
+			
+			//썸네일삭제
+			if(thumb_filename != null) {
+				File thumb_file = new File(filepath + "thumbnail/" + thumb_filename);
+				if(thumb_file.exists()) {
+					thumb_file.delete();
+				}
+			}
+		}
 	}
 
 	@Override 
-	public String insertAdopt(Adopt adopt) {
+	public String insertAdopt(Adopt adopt, MultipartFile files) {
 		
-		//AdoptFileService fileService = new AdoptFileServiceImp();
-		return adoptDao.insert(adopt);
+		AdoptFileService fileService = new AdoptFileServiceImp();
+		return adoptDao.insert(adopt, fileService.fileUpload(files));
 	}
 
+
+	
+	/*
 	@Override
-	public String update(Adopt adopt) {
-		//AdoptFile adoptfile = null;
-		//AdoptFileService fileService = new AdoptFileServiceImp();
-		//adoptfile  = fileService.fileUpload(filename);
+	public String insertAdopt(HttpServletRequest req, HttpServletResponse resp) {
 		
-		adoptDao.update(adopt);
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setDefaultCharset(CHARSET);
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		 
+		Adopt adopt = new Adopt();
+		AdoptFile adoptfile = null;
+		AdoptFileService adoptFileService = new AdoptFileServiceImp();
+		
+		try {
+			List<FileItem> items = upload.parseRequest(req);
+			for(FileItem item : items) {
+				if(item.isFormField()) {
+					adopt = getFormParameter(item, adopt);
+					
+				} else {
+					adoptfile = adoptFileService.fileUpload(item);
+				}
+			}
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");
+		adopt.setId(login.getId());
+		
+		return adoptDao.insert(adopt, adoptfile);
+	}
+	*/
+	
+	/*
+	@Override
+	public String update(HttpServletRequest req, HttpServletResponse resp) {
+		
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setDefaultCharset(CHARSET);
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		
+		Adopt adopt = new Adopt();
+		AdoptFile adoptfile = null;
+		AdoptFileService adoptFileService = new AdoptFileServiceImp();
+		
+		try {
+			List<FileItem> items = upload.parseRequest(req);
+			for(FileItem item : items) {
+				if(item.isFormField()) {
+					adopt = getFormParameter(item, adopt);
+				} else {
+					adoptfile = adoptFileService.fileUpload(item);
+				}
+			}
+		
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		LoginImpl login = (LoginImpl)req.getSession().getAttribute("loginUser");
+		adopt.setId(login.getId());
+		
+		adoptDao.update(adopt, adoptfile);
 		return adopt.getSeqno();
 	}
+	*/
+	
+	
+	
+	
 
 }

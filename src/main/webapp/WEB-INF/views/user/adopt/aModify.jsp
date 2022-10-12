@@ -57,12 +57,33 @@
 		<th>moist</th>
 		<td><input type="text" style="width:100%" name="moist" value="${adopt.moist}"></td>
 		</tr>
-		
-		<!-- <tr>
-		<th>사진첨부</th>
-		<td><input type="file" name="filename"></td>
-		</tr> -->
-		</table>
+
+		<tr>
+		<th>첨부파일</th>
+		<td>
+		<c:set value="${adopt.adoptFile}" var="adoptfile" />
+		<c:choose>
+			<c:when test="${empty adoptfile}">
+		 		<input type="file" name="filename">
+		 	</c:when>
+		 	
+		 	<c:when test="${!empty adoptfile}">
+		 		<c:forEach items="${adoptfile}" var="file" >
+		 			<c:set value="${file.filetype}" var="filetype" />
+		 			<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/'))}" var="type" />
+			 			<div id="fileSector">
+			 			<c:if test="${type eq 'image'}">
+			 				<c:set value="${file.thumbnail.fileName}" var="thumb_file" />
+			 				<img src="/upload/thumbnail/${thumb_file}">
+			 			</c:if>
+			 			${file.filename}(사이즈:${file.filesize})
+			 			<input type="button" value="삭제" onclick="fileDel('${file.no}','${file.savefilename}','${file.filepath}','${thumb_file}' )">
+			 			</div>
+		 		</c:forEach>
+		 	</c:when>
+		 </c:choose>
+		 </td>
+		 </table>
 		
 		<div class="modify">
 		<input type="submit" class="myButton" value="수정">
@@ -70,6 +91,41 @@
 		</div>
 	</form>
 </div>
+
+
+<script>
+function fileDel(no, savefilename, filepath, thumb_filename){	
+	
+	 var ans = confirm("정말로 삭제하시겠습니까?");
+	 if (ans){
+		var x = new XMLHttpRequest();
+		x.onreadystatechange = function(){
+			 if(x.readyState === 4 && x.status === 200){
+				 
+				 var tag = document.getElementById("fileSector");
+				
+				 if(x.responseText.trim() === "0"){
+					 alert("파일 삭제를 실패하였습니다.");
+				 } else {
+					 alert("파일을 삭제하였습니다.")
+					 tag.innerHTML = "<input type='file' name='filename'>";
+				 }
+				 
+				 } else {
+					 console.log('에러코드:'+x.status);
+				 }
+		};
+	}
+	 
+	 x.open("POST", "/file/fileDel", true);
+	 x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 x.send("no="+no+"&savefilename="+savefilename+"&filepath="+filepath+"&thumb_filename="+thumb_filename);
+}
+
+</script>
+
+
+
 
 <%@include file="../footer.jsp"%>
 </body>

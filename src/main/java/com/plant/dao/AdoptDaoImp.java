@@ -130,18 +130,18 @@ public class AdoptDaoImp implements AdoptDao {
 		Adopt adopt = new Adopt();
 
 		try {
-			String sql = "call p_adopt_detail(?,?,?)";
+			String sql = "call p_adopt_detail(?,?,?,?)";
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
 			stmt.setInt(1, Integer.parseInt(seqno));
 			stmt.registerOutParameter(2, OracleTypes.CURSOR);
 			stmt.registerOutParameter(3, OracleTypes.CURSOR);
-			//stmt.registerOutParameter(4, OracleTypes.CURSOR);
-			stmt.executeUpdate();
+			stmt.registerOutParameter(4, OracleTypes.CURSOR);
+			stmt.executeQuery();
 			
 			ResultSet rs = (ResultSet)stmt.getObject(2);
-			
 			rs.next();
+			
 			adopt.setSeqno(seqno);
 			adopt.setId(rs.getString("id"));
 			adopt.setStation(rs.getString("station"));
@@ -165,11 +165,10 @@ public class AdoptDaoImp implements AdoptDao {
 				ar.setId(rs.getString("id"));
 				ar.setWdate(rs.getString("wdate")); 
 				adoptreply.add(ar);
-				} 
-				
-				adopt.setAdoptreply(adoptreply);
+			} 
+			adopt.setAdoptreply(adoptreply);
 			
-			/*
+			//첨부파일 저장
 			List<AdoptFile> fileList = new ArrayList<AdoptFile>();
 			
 			rs = (ResultSet)stmt.getObject(4);
@@ -177,23 +176,24 @@ public class AdoptDaoImp implements AdoptDao {
 			while(rs.next()) {
 				AdoptFile adoptfile = new AdoptFile();
 				adoptfile.setNo(rs.getString("no"));
-				adoptfile.setFilename(rs.getString("filename"));
 				adoptfile.setSavefilename(rs.getString("savefilename"));
+				adoptfile.setFilename(rs.getString("filename"));
 				adoptfile.setFilesize(rs.getString("filesize"));
 				adoptfile.setFiletype(rs.getString("filetype"));
 				adoptfile.setFilepath(rs.getString("filepath"));
 				
 				AdoptThumb at = new AdoptThumb();
+				at.setNo(rs.getString("no"));
 				at.setFileName(rs.getString("thumb_name"));
 				at.setFileSize(rs.getString("thumb_size"));
 				at.setFilePath(rs.getString("thumb_path"));
-				adoptfile.setAdoptthumb(at);
+				adoptfile.setThumbnail(at);
 				
 				fileList.add(adoptfile);
 			}
 			
 			adopt.setAdoptFile(fileList);
-			*/
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -204,14 +204,14 @@ public class AdoptDaoImp implements AdoptDao {
 		return adopt;
 	}
 	
-	public String insert(Adopt adopt) {
+	public String insert(Adopt adopt, AdoptFile adoptfile) {
 		
 		Connection conn = null;
 		CallableStatement stmt = null;
 		String seqno = null;
 		
 		try {
-			String sql = "call p_insert_adopt(?,?)";
+			String sql = "call p_insert_adopt(?,?,?)";
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
 			
@@ -223,7 +223,7 @@ public class AdoptDaoImp implements AdoptDao {
 
 			stmt.setObject(1, adopt_rec);
 			
-			/*
+			
 			ArrayDescriptor desc = ArrayDescriptor.createDescriptor("ADOPTFILE_NT", conn);
 			ARRAY adoptfile_arr = null;
 			
@@ -233,10 +233,13 @@ public class AdoptDaoImp implements AdoptDao {
 				STRUCT adoptfile_thumb_rec = null;
 				Object[] obj_adoptfile_thumb = null;
 				
-				if(adoptfile.getAdoptthumb() != null) {
+				if(adoptfile.getThumbnail() != null) {
 					
-					obj_adoptfile_thumb = new Object[] { adoptfile.getAdoptthumb().getFileSize(),
-														 adoptfile.getAdoptthumb().getFilePath()};
+					obj_adoptfile_thumb = new Object[] { 
+							adoptfile.getThumbnail().getFileName(),
+							adoptfile.getThumbnail().getFileSize(),
+							adoptfile.getThumbnail().getFilePath()
+					};
 				} 
 				
 				adoptfile_thumb_rec = new STRUCT(st_adoptfile_thumb, conn, obj_adoptfile_thumb);
@@ -244,8 +247,8 @@ public class AdoptDaoImp implements AdoptDao {
 				StructDescriptor st_adoptfile = StructDescriptor.createDescriptor("OBJ_ADOPTFILE", conn);
 				
 				Object[] obj_adoptfile = {adoptfile.getSavefilename(), adoptfile.getFilename(), adoptfile.getFilesize(), 
-									   adoptfile.getFiletype(), adoptfile.getFilepath(), 
-									   adoptfile_thumb_rec};
+										  adoptfile.getFiletype(), adoptfile.getFilepath(), 
+									      adoptfile_thumb_rec};
 				
 				STRUCT[] adoptfile_rec = new STRUCT[1];
 				adoptfile_rec[0] = new STRUCT(st_adoptfile, conn, obj_adoptfile);
@@ -257,12 +260,11 @@ public class AdoptDaoImp implements AdoptDao {
 			}
 			
 			stmt.setArray(2, adoptfile_arr);
-			*/
 			
-			stmt.registerOutParameter(2, OracleType.VARCHAR2);
+			stmt.registerOutParameter(3, OracleType.VARCHAR2);
 			stmt.executeQuery();
 			
-			seqno = stmt.getString(2);
+			seqno = stmt.getString(3);
 				
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,12 +287,12 @@ public class AdoptDaoImp implements AdoptDao {
 		try {
 			conn = ds.getConnection();
 			stmt = conn.prepareStatement(sql);
-			AdoptThumb thumb = adoptfile.getAdoptthumb();
+			AdoptThumb thumb = adoptfile.getThumbnail();
 			stmt.setString(1, thumb.getFileName());
 			stmt.setString(2, thumb.getFileSize());
 			stmt.setString(3, thumb.getFilePath());
 			stmt.setString(4, attach_no);
-
+			stmt.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -301,11 +303,11 @@ public class AdoptDaoImp implements AdoptDao {
 	
 	public String insertAdoptFile(String seqno, AdoptFile adoptfile) {
 		String sql = "INSERT INTO adoptfile(no, filename, savefilename, filesize, filetype, filepath, adopt_no)"
-				   + "VALUES (ADOPTFILE_SEQNO.NEXTVAL, ?,?,?,?,?,?)";
+				   + "VALUES (ADOPTFILE_SEQNO.NEXTVAL,?,?,?,?,?,?)";
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		String attach_no = null;
+		String adoptfile_no = null;
 		
 			try {
 				conn = ds.getConnection();
@@ -322,7 +324,7 @@ public class AdoptDaoImp implements AdoptDao {
 				conn = ds.getConnection();
 				ResultSet rs = stmt.executeQuery();
 				rs.next();
-				attach_no = rs.getString(1);
+				adoptfile_no = rs.getString(1);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -330,11 +332,11 @@ public class AdoptDaoImp implements AdoptDao {
 				resourceClose(conn, stmt);	
 			}
 			
-			return attach_no;
+			return adoptfile_no;
 		
 	}
 	
-	public void update(Adopt adopt) {
+	public void update(Adopt adopt, AdoptFile adoptfile) {
 		String sql = "call p_update_adopt(?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		CallableStatement stmt = null;
@@ -353,7 +355,7 @@ public class AdoptDaoImp implements AdoptDao {
 			stmt.setString(8, adopt.getSeqno());
 			stmt.executeUpdate();
 			
-			/*
+			
 			if(adoptfile != null) {
 				
 				String adoptfile_no = insertAdoptFile(adopt.getSeqno(), adoptfile);
@@ -363,7 +365,7 @@ public class AdoptDaoImp implements AdoptDao {
 					insertAdoptThumb(adoptfile_no, adoptfile);
 				}
 			}
-			*/
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -380,18 +382,19 @@ public class AdoptDaoImp implements AdoptDao {
 		
 		
 		try {
-			String sql = "call p_delete_adopt(?)";
+			String sql = "call p_delete_adopt(?,?,?,?)";
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
 			stmt.setString(1, seqno);
-			//stmt.registerOutParameter(2, OracleTypes.VARCHAR);
-			//stmt.registerOutParameter(3, OracleTypes.VARCHAR);
-			//stmt.registerOutParameter(4, OracleTypes.VARCHAR);
-			stmt.executeQuery();		
+			stmt.registerOutParameter(2, OracleTypes.VARCHAR);
+			stmt.registerOutParameter(3, OracleTypes.VARCHAR);
+			stmt.registerOutParameter(4, OracleTypes.VARCHAR);
+			stmt.executeQuery();
+			System.out.println("프로시저 리턴결과:" + stmt.getString(2));
 			
-			//map.put("savefilename", stmt.getString(2));
-			//map.put("filepath", stmt.getString(3));
-			//map.put("thumb_filename", stmt.getString(4));
+			map.put("savefilename", stmt.getString(2));
+			map.put("filepath", stmt.getString(3));
+			map.put("thumb_filename", stmt.getString(4));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -401,8 +404,6 @@ public class AdoptDaoImp implements AdoptDao {
 	
 		return map;
 	}
-	
-	
 	
 	//자원반납
 	private void resourceClose(Connection conn, PreparedStatement stmt) {
@@ -430,6 +431,7 @@ public class AdoptDaoImp implements AdoptDao {
 		}	
 	}
 	
+	/*
 	@Override
 	public String insertAdopt(Adopt adopt) {
 		
@@ -461,7 +463,6 @@ public class AdoptDaoImp implements AdoptDao {
 		}
 		
 		return seqno;
-	}
-
+	}*/
 	
 }

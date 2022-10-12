@@ -191,9 +191,8 @@ section {
 }
 
 .asd_content {
-	margin-top: 30px;
     font-size: 20px;
-    line-height: 180px;
+    line-height: 50px;
     word-break: break-all;
 }
 .asd_info {
@@ -650,11 +649,6 @@ table {
  width: 60%;
 }
 
-img{
- width: 15px;
- margin-bottom: 3px;
-}
-
 #replyInput{
  width: 100%;
  margin: 20px;
@@ -662,6 +656,12 @@ img{
 
 .reply{
   margin: 20px;
+}
+
+.adoptfile{
+ width: 200px;
+ margin-top: 40px;
+ margin-bottom: 40px;
 }
 
 /*분양 디테일 신청*/

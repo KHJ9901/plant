@@ -14,7 +14,7 @@ import com.plant.dto.AdoptThumb;
 public interface AdoptFileService {
 
 	//서블릿
-	public AdoptFile fileUpload(FileItem item);
+	//public AdoptFile fileUpload(FileItem item);
 	
 	//스프링
 	public AdoptFile fileUpload(MultipartFile item);
@@ -23,6 +23,6 @@ public interface AdoptFileService {
 	
 	public void fileDown(HttpServletRequest request, HttpServletResponse response);
 
-	public int delete(String no, String savefilename, String filepath, String thumb_file);
+	public int delete(String no, String savefilename, String filepath, String thumb_filename);
 	
 }

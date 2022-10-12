@@ -39,7 +39,7 @@ fieldset, img {
   position: relative;
   float: left;
   width: calc((100% - 50px) / 4);
-  margin-top: 50px;
+  margin-top: 30px;
   margin-right: 5px;
   margin-bottom: 50px;
   border: 1px solid #eee;
@@ -68,7 +68,6 @@ fieldset, img {
 .adoptList {
   display: flex;
   flex-direction: column;
-  height:480px;
   list-style: none;
 }
 

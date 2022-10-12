@@ -27,7 +27,6 @@
 		<td><textarea style="width:100%" cols="100" rows="20" name="content"></textarea></td>
 		</tr>
 		
-		
 		<!--<tr>
 		<th>내가 등록한 식물</th>
 		<td><input type="hidden" style="width:100%" name="mplant"></td>
@@ -58,11 +57,11 @@
 		<td><input type="text" style="width:100%" name="moist"></td>
 		</tr>
 		
-		<!-- <tr>
+		<tr>
 		<th>사진첨부</th>
-		<td><input type="file" name="filename"></td>
-		</tr> -->
-	</table>
+		<td><input type="file" name="files"></td>
+		</tr>
+		</table>
 		
 		<div class="modify">
 		<input type="submit" class="myButton" value="등록">

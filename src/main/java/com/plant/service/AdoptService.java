@@ -18,15 +18,14 @@ public interface AdoptService {
 	
 	public Adopt searchAdopt(String seqno);
 	
-	public String insertAdopt(HttpServletRequest req, HttpServletResponse resp);
+	//public String insertAdopt(HttpServletRequest req, HttpServletResponse resp);
 	
-	public String insertAdopt(Adopt adopt);
+	public String insertAdopt(Adopt adopt, MultipartFile files);
 	
-	public String update(HttpServletRequest req, HttpServletResponse resp);
+	//public String update(HttpServletRequest req, HttpServletResponse resp);
 	
-	public String update(Adopt adopt);
+	public String update(Adopt adopt, MultipartFile filename);
 
 	public void adoptdel(String seqno);
-
 
 }
