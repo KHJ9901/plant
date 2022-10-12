@@ -1,28 +1,27 @@
 package com.plant.dto;
 
-public class Criteria {
+public class Myboard {
 	private int currentPage;
 	private int rowPerpage;
 	private String searchField;
 	private String searchText;
-	private String filename;
-	
-	public Criteria() {
+	private String id;
+	public Myboard() {
 		super();
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public Criteria(int currentPage, int rowPerpage) {
+	public Myboard(int currentPage, int rowPerpage) {
 		super();
 		this.currentPage = currentPage;
 		this.rowPerpage = rowPerpage;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getCurrentPage() {

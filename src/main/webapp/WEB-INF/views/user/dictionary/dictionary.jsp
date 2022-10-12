@@ -57,12 +57,12 @@ function goAction() {
  			<c:forEach items="${diction}" var="dic">
 				<a href="/dic/dicDetail?seqno=${dic.seqno}">
 					<div class="searchContent">
-							<c:set value="${dic.dicthumb.fileType}" var="filetype" />
+							<c:set value="${dic.filetype}" var="filetype" />
 								<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype, '/')) }" var="type" />
 								
 								<c:if test="${type eq 'image'}">
-									<c:set value="${dic.dicthumb.fileName}" var="thumb_file" />
-									<img src="/plant/thumb/${thumb_file}">
+									<c:set value="${dic.thumbfilename}" var="thumb_file" />
+									<img src="/upload/tmp/${thumb_file}">
 								</c:if>
 								<p>${dic.kname}</p>
 					</div>

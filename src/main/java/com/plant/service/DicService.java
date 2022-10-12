@@ -11,33 +11,33 @@ import com.plant.dto.*;
 
 public interface DicService {
 	//---------------리스트 조회--------------------//
-	public List<Dictionary> list(Criteria cri);
+	public List<DictionaryVO> list(Criteria cri);
 	
-	public List<Dictionary> inList(Criteria cri);
+	public List<DictionaryVO> inList(Criteria cri);
 
-	public List<Dictionary> outList(Criteria cri);
+	public List<DictionaryVO> outList(Criteria cri);
 
-	public List<Mplant> mpList(Criteria cri);
+	public List<MplantVO> mpList(Criteria cri);
 	
 	
 	//---------------상세페이지--------------------//
-	public Dictionary DicDetail(String seqno);
+	public DictionaryVO DicDetail(String seqno);
 
-	public Mplant MpDetail(String seqno);
+	public MplantVO MpDetail(String seqno);
 	
 	
 
 	//---------------삽입--------------------//	
 	public int insertDic(Dictionary diction, MultipartFile files);
 	
-	public int insertMp(Mplant mplant, MultipartFile files);
+	public int insertMp(MplantVO mplant, MultipartFile files);
 	
 	
 	
 	//---------------수정--------------------//
 	public int updateDic(Dictionary diction, MultipartFile files);
 	
-	public int updateMp(Mplant mplant, MultipartFile files);
+	public int updateMp(MplantVO mplant, MultipartFile files);
 	
 	
 	

@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.plant.dao.QnaFileDao;
@@ -36,7 +34,7 @@ public class QnaFileServicImp implements QnaFileService{
 		long fileSize= item.getSize();
 		System.out.println("업로드 파일사이즈 : " + fileSize);
 		if(fileSize >0) {
-			String fileUploadPath = "D:/plant/fileupload/";
+			String fileUploadPath = "D:/plant/upload/";
 			String fileName = item.getName();
 			System.out.println("업로드 파일이름 : " + fileName);
 			
@@ -81,7 +79,7 @@ public class QnaFileServicImp implements QnaFileService{
 	@Override
 	public Qna_Thumbnail setThumbnail(File file, String saveFileName) {
 		String thumFileName = "thumb_200x200_" + saveFileName;
-		String thumFilePath = "D:\\plant\\fileupload\\thumbnail\\";
+		String thumFilePath = "D:\\plant\\upload\\tmp\\";
 		File thumFile = new File(thumFilePath + thumFileName);
 		try {
 			Thumbnails.of(file).size(200, 200).toFile(thumFile);
@@ -171,7 +169,7 @@ public class QnaFileServicImp implements QnaFileService{
 		long filesize= item.getSize();
 		System.out.println("업로드 파일사이즈 : " + filesize);
 		if(filesize >0) {
-			String fileUploadPath = "D:/plant/fileupload/";
+			String fileUploadPath = "D:/plant/upload/";
 			String fileName = item.getOriginalFilename();
 			System.out.println("업로드 파일이름 : " + fileName);
 			

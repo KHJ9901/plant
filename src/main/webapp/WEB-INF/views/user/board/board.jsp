@@ -24,9 +24,9 @@
 			<!-- 검색이면 class="searchForm" -->
 			
 			<c:if test="${loginuser != null}">
-			<div class="wrap">
-			<a href="/board/boardnew" class="mybutton">게시글등록</a>
-			</div>
+				<div class="wrap">
+				<a href="/board/boardnew" class="mybutton">게시글등록</a>
+				</div>
 			</c:if>
 		</div>
 	</div>

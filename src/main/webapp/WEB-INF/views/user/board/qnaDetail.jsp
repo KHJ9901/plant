@@ -42,7 +42,7 @@
 				<c:set value="${ask.qna_img}" var="qnaimg" />
 				<c:if test ="${qnaimg != null}">
 					<c:forEach items="${qnaimg}" var="img">
-						<form class="ask_file" name="filedown" method="post" action="/plant0812/file/fileDown">
+						<form class="ask_file" name="filedown" method="post" action="/qfile/fileDown">
 							<input type="hidden" name ="filename" value="${img.uploadfile}">
 						  	<input type="hidden" name ="savefilename" value="${img.savefile}">
 						  	<input type="hidden" name ="filepath" value="${img.location}">
@@ -52,7 +52,7 @@
 					
 							<c:if test="${type eq 'image'}">
 								<c:set value="${img.thumbnail.filename}" var="thumb_file" />
-								<img src="/fileupload/thumbnail/${thumb_file}">
+								<img src="/upload/tmp/${thumb_file}">${img.thumbnail.filename}
 							</c:if>
 						</form>
 					</c:forEach>
@@ -275,9 +275,9 @@ $(document).ready(function(){
 				str +=	"	<div class='asd_bottom_btn_group'>";
 				str +=	"	<button class='asd_no_click'>"+list[i].wdate+"</button>	";				
 				str +=	"		<span class='asd_seqarator'>|</span>";
-				str +=	"		<button data-seqno='"+list[i].qr_seqno+"' name='update'>수정</button>";
-				str +=	"		<span class='asd_seqarator'>|</span>";
-				str +=	"		<button id='ReplyDeleteBtn'>삭제</button>";
+				str +=	"		<button data-seqno='"+list[i].qr_seqno+"' name='update'>수정.삭제</button>";
+// 				str +=	"		<span class='asd_seqarator'>|</span>";
+// 				str +=	"		<button id='ReplyDeleteBtn'>삭제</button>";
 				str +=	"	</div>";
 				str +=	"	</li>";
 				str +=	"</ul>";

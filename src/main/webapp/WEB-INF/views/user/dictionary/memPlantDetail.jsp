@@ -11,20 +11,16 @@
 
 	<div class="detailHead">
 	<c:set value="${mplantdetail}" var="md" />
-		<c:forEach items="${md.mpimg}" var="mpimg" >
-		
-			<c:set value="${mpimg.fileType}" var="mpitype" />
-			
+			<c:set value="${md.filetype}" var="mpitype" />
+
 			<div class="detailImg">
 			
 				<c:set value="${fn:substring(mpitype, 0, fn:indexOf(mpitype, '/'))}" var="type" />
-				
 				<c:if test="${type eq 'image'}">
-					<c:set value="${mpimg.fileName}" var="img_file" />
-					<img src="/plant/${img_file}">
+					<c:set value="${md.savefilename}" var="img_file" />
+					<img src="/upload/${img_file}">
 				</c:if> 
 			</div>
-		</c:forEach>
 		
 		<div class="detailHeadTitle">
 		
@@ -100,7 +96,7 @@
 		<a href="/dic/deleteMplant?seqno=${md.mplant_seqno}'">삭제</a>
 	</c:if>
 	
-	<!-- 댓글 등록 폼  -->
+ 	<!-- 댓글 등록 폼  -->
 	<div>
 		<textarea id="content" name="content" 
 			<c:if test="${user != null}">placeholder="댓글작성"</c:if>
@@ -141,8 +137,6 @@
 
 </div>
 <script>
-
-
 	function del_confirm(seqno) {
 		var rs = confirm('정말로 삭제하시겠습니까?');
 		if(rs) {
@@ -273,6 +267,7 @@ $(document).ready(function(){
 			alert("로그인 후 댓글 작성이 가능합니다.");
 			
 		} else if(${user != null}) {
+			
 			console.log("***************여기까지 왔니?*****************");
 				var content = document.getElementById("content").value;
 				
@@ -287,8 +282,8 @@ $(document).ready(function(){
 					document.getElementById("content").value = "";
 					showList(-1);
 					//document.getElementById("newLine").innerHTML = "<li>" + reply.comment + "</li>";
-				})
-			}
+				});
+		}
 	});
 
 	var rno;
@@ -334,5 +329,6 @@ $(document).ready(function(){
 		});
 	});
 });
+
 </script>
 <%@ include file = "../footer.jsp" %>

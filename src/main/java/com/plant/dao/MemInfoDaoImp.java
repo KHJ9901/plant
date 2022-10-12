@@ -28,32 +28,39 @@ public class MemInfoDaoImp implements MemInfoDao{
 	@Autowired
 	private DataSource ds;
 
-	public List<MemInfo> myboard(String id) {
+	public List<Board> myboard(Criteria cri, String id) {
 		CallableStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> meminfo = new ArrayList<MemInfo>();
-		Board board = new Board();
+		List<Board> meminfo = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = "call p_getmyboardlist(?,?,?,?,?)";
 
+		if(cri.getSearchText() ==  null) {
+			cri.setSearchText("");
+		}
+		cri.setCurrentPage(1);
+		cri.setRowPerpage(10);
 		try {
 			conn = ds.getConnection();
 			stmt = conn.prepareCall(sql);
-			stmt.registerOutParameter(1, OracleTypes.INTEGER);
-			stmt.registerOutParameter(2, OracleTypes.INTEGER);
-			stmt.setString(3, board.getTitle());
+			stmt.setInt(1, cri.getCurrentPage());
+			stmt.setInt(2, cri.getRowPerpage());
+			stmt.setString(3, cri.getSearchText());
 			stmt.setString(4, id);
 			stmt.registerOutParameter(5, OracleTypes.CURSOR);
 			stmt.executeQuery();
-			ResultSet rs = stmt.executeQuery();
+			ResultSet rs = (ResultSet)stmt.getObject(5);
 			while(rs.next()) {
-				board.setSeqno("no");
-				board.setTitle("title");
-				board.setId("id");
-				board.setWdate("wdate");
-				board.setCount("count");
+				Board board = new Board();
+				board.setRn(rs.getInt("rn"));
+				board.setTitle(rs.getString("title"));
+				board.setId(rs.getString("id"));
+				board.setWdate(rs.getString("wdate"));
+				board.setCount(rs.getString("count"));
+				meminfo.add(board);
 			}
+			
 		} catch (SQLException e) {	
 			e.printStackTrace();
 		}finally {
@@ -408,4 +415,5 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 
 	}
+
 }

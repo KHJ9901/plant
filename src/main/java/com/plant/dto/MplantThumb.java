@@ -6,7 +6,6 @@ public class MplantThumb {
 	private String fileSize;
 	private String fileType;
 	
-	
 	public String getFileName() {
 		return fileName;
 	}
