@@ -20,7 +20,7 @@ public class DictionaryVO {
 	private String id;
 	private String searchField;
 	private String searchText;
-	private String no;
+	private String mpi_seqno;
 	private String filename;
 	private String savefilename;
 	private String filepath;
@@ -28,12 +28,19 @@ public class DictionaryVO {
 	private String filetype;
 	private String type;
 	private String uploadfile;
+	private String no;
 	private String thumbfilename;
 	private String thumbfilepath;
 	private String thumbfilesize;
 	private String thumbfiletype;
 	
 	
+	public String getMpi_seqno() {
+		return mpi_seqno;
+	}
+	public void setMpi_seqno(String mpi_seqno) {
+		this.mpi_seqno = mpi_seqno;
+	}
 	public String getType() {
 		return type;
 	}

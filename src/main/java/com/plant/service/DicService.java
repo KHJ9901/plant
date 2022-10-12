@@ -37,7 +37,7 @@ public interface DicService {
 	//---------------수정--------------------//
 	public int updateDic(Dictionary diction, MultipartFile files);
 	
-	public int updateMp(Mplant mplant, MultipartFile files);
+	public int updateMp(MplantVO mplant, MultipartFile files);
 	
 	
 	

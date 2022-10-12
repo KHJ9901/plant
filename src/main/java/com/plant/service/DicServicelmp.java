@@ -72,7 +72,9 @@ public class DicServicelmp implements DicService{
 	public int insertMp(MplantVO mplant, MultipartFile files) {
 		
 		MplantImg filename = mpfs.mpImgUpload(files);
+		
 		mplant.setFilename(filename.getFileName());
+		mplant.setSavefilename(filename.getSaveFileName());
 		mplant.setFilepath(filename.getFilePath());
 		mplant.setFiletype(filename.getFileType());
 		mplant.setFilesize(filename.getFileSize());
@@ -80,8 +82,27 @@ public class DicServicelmp implements DicService{
 		mplant.setThumbfilename(filename.getMpthumb().getFileName());
 		mplant.setThumbfilepath(filename.getMpthumb().getFilePath());
 		mplant.setThumbfilesize(filename.getMpthumb().getFileSize());
-		mplant.setThumbfiletype(filename.getMpthumb().getFileType());
 		
+//		System.out.println("시퀀스: " + mplant.getMplant_seqno());
+//		System.out.println("식물이름: " + mplant.getName());
+//		System.out.println("카테고리: " + mplant.getCate());
+//		System.out.println("아이디: " + mplant.getId());
+//		System.out.println("습도: " + mplant.getMoist());
+//		System.out.println("장소: " + mplant.getPlace());
+//		System.out.println("난이도: " + mplant.getPlevel());
+//		System.out.println("온도: " + mplant.getTemp());
+//		System.out.println("물: " + mplant.getWater());
+//		System.out.println("기타: " + mplant.getEtc());
+//		
+//		System.out.println("사진이름: " + mplant.getFilename());
+//		System.out.println("사진이름: " + mplant.getSavefilename());
+//		System.out.println("사진경로: " + mplant.getFilepath());
+//		System.out.println("사진크기: " + mplant.getFilesize());
+//		System.out.println("사진타입: " + mplant.getFiletype());
+//		
+//		System.out.println("썸이름: " + mplant.getThumbfilename());
+//		System.out.println("썸경로: " + mplant.getThumbfilepath());
+//		System.out.println("썸크기: " + mplant.getThumbfilesize());
 		return dicmapper.mplantInsert(mplant);
 	}
 	
@@ -93,7 +114,41 @@ public class DicServicelmp implements DicService{
 	}
 	
 	@Override
-	public int updateMp(Mplant mplant, MultipartFile files) {
+	public int updateMp(MplantVO mplant, MultipartFile files) {
+		
+		MplantImg filename = mpfs.mpImgUpload(files);
+		
+		mplant.setFilename(filename.getFileName());
+		mplant.setSavefilename(filename.getSaveFileName());
+		mplant.setFilepath(filename.getFilePath());
+		mplant.setFiletype(filename.getFileType());
+		mplant.setFilesize(filename.getFileSize());
+		
+		mplant.setThumbfilename(filename.getMpthumb().getFileName());
+		mplant.setThumbfilepath(filename.getMpthumb().getFilePath());
+		mplant.setThumbfilesize(filename.getMpthumb().getFileSize());
+		
+		System.out.println("시퀀스: " + mplant.getMplant_seqno());
+		System.out.println("식물이름: " + mplant.getName());
+		System.out.println("카테고리: " + mplant.getCate());
+		System.out.println("아이디: " + mplant.getId());
+		System.out.println("습도: " + mplant.getMoist());
+		System.out.println("장소: " + mplant.getPlace());
+		System.out.println("난이도: " + mplant.getPlevel());
+		System.out.println("온도: " + mplant.getTemp());
+		System.out.println("물: " + mplant.getWater());
+		System.out.println("기타: " + mplant.getEtc());
+		
+		System.out.println("사진이름: " + mplant.getFilename());
+		System.out.println("사진이름: " + mplant.getSavefilename());
+		System.out.println("사진경로: " + mplant.getFilepath());
+		System.out.println("사진크기: " + mplant.getFilesize());
+		System.out.println("사진타입: " + mplant.getFiletype());
+		
+		System.out.println("썸이름: " + mplant.getThumbfilename());
+		System.out.println("썸경로: " + mplant.getThumbfilepath());
+		System.out.println("썸크기: " + mplant.getThumbfilesize());
+		
 		return dicmapper.mplantUpdate(mplant, mpfs.mpImgUpload(files));
 	}
 	

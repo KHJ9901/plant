@@ -143,25 +143,25 @@ public class DictionaryControllerTest {
 		
 	}
 	
-	@Test // 회원 식물 삽입 테스트 --------미완성
-	public void insertMplant() { //메소드 이름으로 객체가 만들어짐
-		
-		Mplant m = new Mplant();
-		MplantImg mi = new MplantImg();
-		try {
-			String rs = mockMvc.perform(MockMvcRequestBuilders.post("/dic/insertMplant")
-						).andReturn().getModelAndView().getViewName();
-			log.info("회원식물 삽입 테스트 : " + rs);
-			//ModelAndView 은값집어 넣고 페이지 설정 할 때
-			//model 은 값만 가져옴
-			m.setMoist("컨트롤러 회원식물 습도 추가 테스트");
-			mi.setFileName("컨트롤러 회원식물 사진 이름 추가 테스트");
-			mapper.mplantInsert(m, mi);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test // 회원 식물 삽입 테스트 --------미완성
+//	public void insertMplant() { //메소드 이름으로 객체가 만들어짐
+//		
+//		MplantVO m = new MplantVO();
+//		MplantImg mi = new MplantImg();
+//		try {
+//			String rs = mockMvc.perform(MockMvcRequestBuilders.post("/dic/insertMplant")
+//						).andReturn().getModelAndView().getViewName();
+//			log.info("회원식물 삽입 테스트 : " + rs);
+//			//ModelAndView 은값집어 넣고 페이지 설정 할 때
+//			//model 은 값만 가져옴
+//			m.setMoist("컨트롤러 회원식물 습도 추가 테스트");
+//			mi.setFileName("컨트롤러 회원식물 사진 이름 추가 테스트");
+//			mapper.mplantInsert(m, mi);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Test // 사전 수정 테스트 ------ 미완성
 	public void updateDiction() { //메소드 이름으로 객체가 만들어짐
@@ -184,7 +184,7 @@ public class DictionaryControllerTest {
 	@Test // 회원식물 수정 테스트 ------ 미완성
 	public void updateMplant() { //메소드 이름으로 객체가 만들어짐
 		
-		Mplant m = new Mplant();
+		MplantVO m = new MplantVO();
 		MplantImg mi = new MplantImg();
 		try {
 			String rs = mockMvc.perform(MockMvcRequestBuilders.post("/dic/updateMplant")
