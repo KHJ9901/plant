@@ -56,7 +56,7 @@
 					
 						<c:forEach items="${board}" var="board" >
 						<div class="bdBottom">
-							<div class="memBdNum">${board.no}</div>
+							<div class="memBdNum">${board.rn}</div>
 							<div class="memBdNum"><a href="/bo/boardDetail?seqno=${board.seqno}">${board.title}</a></div>
 							<%-- <div class="memBdName">${board.name}</div> --%>
 							<div class="memBdId">${board.id}</div>

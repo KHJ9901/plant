@@ -64,7 +64,7 @@
 							<div>
 								<input class="bdBottomBt" type="checkbox" name="memselect" value="">
 							</div>
-							<div class="memBdNum">${board.no}</div>
+							<div class="memBdNum">${board.rn}</div>
 							<div class="memBdNum"><a href="/bo/boardDetail?seqno=${board.seqno}">${board.content}</a></div>
 							<div class="memBdId">${board.id}</div>
 							<div class="memBdWdate">${board.wdate}</div>

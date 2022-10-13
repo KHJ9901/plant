@@ -20,21 +20,19 @@
 function init(){
     const msg = document.getElementsByName("msg");
     var alert_msg;
-    //var modal_pop = false;
     if(msg[0].value == "loginOk") {
        alert_msg ="로그인이 되었습니다.";
-      // modal_pop = false;
-    }         
+    }  
+    
     if(msg[0].value == "loginFail") {
        alert_msg = "회원정보가없습니다.";   
-      // modal_pop = true;
-    }   
+    } 
+    
     if(msg[0].value == "memberOk") {
        alert_msg = "회원등록이 되었습니다.";
-      // modal_pop = true;
-    }   
+    } 
+    
       if(msg[0].value !== "null") alert(alert_msg); 
-      //if(modal_pop) document.getElementById("box").style.display="block";
  }
 
 

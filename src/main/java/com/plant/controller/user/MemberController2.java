@@ -36,9 +36,6 @@ public class MemberController2 {
 			consumes = "application/json",
 			produces = "text/plain; charset=utf-8")
 	public ResponseEntity<String> create(@RequestBody Plantmember member){
-		log.info("MemberController create() called.." + member);
-		log.info("멤버ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ"+ member.getId() 
-															   + member.getPw() + member.getName() + member.getEmail() + member.getDomain()+member.getNickname()+member.getPhone());
 		int rs = mapper.insertmember(member);
 		return rs == 1 ? new ResponseEntity<>("회원등록완료", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
