@@ -321,7 +321,7 @@ public class AdoptDaoImp implements AdoptDao {
 				stmt.executeQuery();
 				
 				sql = "SELECT max(no) FROM adoptfile";
-				conn = ds.getConnection();
+				stmt = conn.prepareStatement(sql);
 				ResultSet rs = stmt.executeQuery();
 				rs.next();
 				adoptfile_no = rs.getString(1);

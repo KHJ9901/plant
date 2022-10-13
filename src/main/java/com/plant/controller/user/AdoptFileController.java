@@ -3,6 +3,9 @@ package com.plant.controller.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,13 +14,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.plant.service.AdoptFileService;
+import com.plant.service.AdoptFileServiceImp;
 
 @Controller
-@RequestMapping(value="/file/")
-public class AdoptFileController{
+@WebServlet("/file/*")
+public class AdoptFileController extends HttpServlet {
 
-	@Autowired
-	AdoptFileService adoptFileService;
+	AdoptFileService adoptFileService = new AdoptFileServiceImp();
+	
+    public AdoptFileController() {
+        super();
+    }	
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -51,8 +58,7 @@ public class AdoptFileController{
 		}
 		
 	}
-	
-	/*
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
@@ -60,6 +66,5 @@ public class AdoptFileController{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
-	
-	*/
+
 }
