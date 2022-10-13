@@ -12,10 +12,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.plant.dao.AdoptFileDao;
@@ -24,11 +20,10 @@ import com.plant.dto.AdoptThumb;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-@Repository
 public class AdoptFileServiceImp implements AdoptFileService {
 
-	@Autowired
-	AdoptFileDao adoptfileDao;
+	AdoptFileDao adoptfileDao = new AdoptFileDao();
+	AdoptFile adoptfile = null;
 	
 	//스프링
 	@Override
@@ -160,7 +155,7 @@ public class AdoptFileServiceImp implements AdoptFileService {
 		//썸네일삭제
 		if(thumb_filename != null && rs == 1) {
 			File thumb_file = new File(filepath + "thumbnail/" + thumb_filename);
-			if(thumb_file.exists()) {
+			if(file.exists()) {
 				thumb_file.delete();
 			}
 		}
