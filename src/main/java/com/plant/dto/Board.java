@@ -12,6 +12,7 @@ public class Board {
 	private String id;
 	private String name;
 	private String reply;
+	private String etc;
 	private List<BoardReply> boardreply;
 	
 	
@@ -75,5 +76,12 @@ public class Board {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+	
 
 }
