@@ -45,12 +45,12 @@ public class MemberServiceimp implements MemberService {
 		
 		return mdo.pwfind(id,name,email);
 	}
-
+	//멤버서비스 imp
 	@Override
 	public int insertMember(Plantmember member) {
 		return mdo.insertMember(member);
 	}
-
+	//멤버서비스 imp
 	@Override
 	public Plantmember mypageEdit(Plantmember member) {
 		return mdo.mypageEdit(member);

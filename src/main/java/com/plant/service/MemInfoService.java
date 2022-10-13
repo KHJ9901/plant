@@ -18,27 +18,41 @@ public interface MemInfoService {
 	public MemInfo searchBoard(String seqno);
 
 	
-	List<MemInfo> myqnaboard(Criteria cri, Model model, HttpSession sess);
-	
-	List<MemInfo> myadoptboard(Criteria cri, Model model, HttpSession sess);
-
-	List<MemInfo> myplantboard(Criteria cri, Model model, HttpSession sess);
-
-	List<MemInfo> myadoptreviewboard(Criteria cri, Model model, HttpSession sess);
-
-	List<MemInfo> myreply(Criteria cri, Model model, HttpSession sess);
-
-	List<MemInfo> myqnareplyboard(Criteria cri, Model model, HttpSession sess);
+	/*
+	 * List<MemInfo> myqnaboard(Criteria cri, Model model, HttpSession sess);
+	 * 
+	 * List<MemInfo> myadoptboard(Criteria cri, Model model, HttpSession sess);
+	 * 
+	 * List<MemInfo> myplantboard(Criteria cri, Model model, HttpSession sess);
+	 * 
+	 * List<MemInfo> myadoptreviewboard(Criteria cri, Model model, HttpSession
+	 * sess);
+	 * 
+	 * List<MemInfo> myreply(Criteria cri, Model model, HttpSession sess);
+	 * 
+	 * List<MemInfo> myqnareplyboard(Criteria cri, Model model, HttpSession sess);
+	 */
 
 	public Plantmember mypage(String id);
 
 
 	public List<Board> list(Criteria cri, String id);
+	public List<Board> list2(Criteria cri, String id);
+	public List<Board> list3(Criteria cri, String id);
+	public List<Board> list4(Criteria cri, String id);
+	public List<Board> list5(Criteria cri, String id);
+	public List<Board> list6(Criteria cri, String id);
+	public List<Board> list7(Criteria cri, String id);
 
 
 	public int getTotalRec(Criteria cri);
 
-	public List<Board> myqnaboard(Criteria cri, String id);
+
+
+
+
+
+
 
 
 

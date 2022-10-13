@@ -8,14 +8,13 @@
 <!-- <script src="/js/homecheck.js"></script> -->
 
 	<div class="formContainer"> 
+	<!-- 고영재 2022-09-16 회원가입기능 구현  -->
 	<c:set value="${loginUser}" var="user"/>                                                                                     
 	      	<h2>회원가입</h2>
+	    	
 	    	<div class="textForm">
-	        	<label for ="id"  class="id" >아이디</label>
-	        	<input type ="text" class="id" name="id" id="id">
-	        	<div>
-	        		<font id = " id_feedback" size="2"></font>
-	        	</div>
+	        	<label for ="id"  class="id" ></label>
+	        	<input type ="text" class="id" name="id" id="id" placeholder="아이디" required>
 	     		<input type="hidden" name="odDuplication" value="idUncheck"/>
 	        </div>
 	        
@@ -33,7 +32,6 @@
 	        
 	        <div class="textForm">
 		    	<input type="text" id="email" name="email" placeholder="이메일아이디" class="email" required>
-		    	<button type="button"id="EmailDoubleCheck" name="dbCheckemail" class="checkid" >중복확인</button>
 		    </div>
 		    
 		    <div class="textForm">
@@ -48,7 +46,6 @@
 	       
 	       <div class="textForm">
 	       		<input id="nickname" name="nickname" type="text" class="nickname" placeholder="닉네임" required>
-	      		<button type="button" id="NicknameDoubleCheck"  name="dbCheckName" class="checkname" >중복확인</button>
 	     		<input type="hidden" name="odDuplication" value="nameUncheck"/>
 	      </div>
 	      
@@ -56,7 +53,6 @@
 	        	<input id="phone" name="phone" type="number" class="cellphoneNo" placeholder="전화번호" required>
 	      </div>
 	      
-	      <!-- <input type="button" id="insertmember" class="myButton" value="J O I N"/> -->
 	      <button id="insertmember" class="myButton"> J O I N</button>
    </div>    
 
@@ -113,7 +109,7 @@ $(document).ready(function(){
 	
 
 	
-	/* 회원가입 넣고싶다 */
+	/* script 회원가입 */
  	$("#insertmember").on("click",function(e){
 	console.log(id.value);
 	console.log($("#name2").val());
@@ -129,7 +125,6 @@ $(document).ready(function(){
 		memberService.insertmember(member,function(result){
 			alert("회원등록완료 로그인을 해주세요." + result);
 			location.href="/lo/loginview"
-			//document.getElementById("newLine").innerHTML = "<li>" + reply.comment + "</li>";
 		});
 	});
 	/* 아이디중복확인 */

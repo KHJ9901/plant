@@ -31,7 +31,7 @@ public class MemInfoDaoImp implements MemInfoDao{
 	public List<Board> myboard(Criteria cri, String id) {
 		CallableStatement stmt = null;
 		Connection conn = null;
-		List<Board> meminfo = new ArrayList<Board>();
+		List<Board> Board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = "call p_getmyboardlist(?,?,?,?,?)";
@@ -53,12 +53,12 @@ public class MemInfoDaoImp implements MemInfoDao{
 			ResultSet rs = (ResultSet)stmt.getObject(5);
 			while(rs.next()) {
 				Board board = new Board();
-				board.setRn(rs.getInt("rn"));
+				board.setRn(rs.getString("rn"));
 				board.setTitle(rs.getString("title"));
 				board.setId(rs.getString("id"));
 				board.setWdate(rs.getString("wdate"));
 				board.setCount(rs.getString("count"));
-				meminfo.add(board);
+				Board.add(board);
 			}
 			
 		} catch (SQLException e) {	
@@ -66,12 +66,12 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}finally {
 			resourceClose(conn, stmt);
 		}
-		return meminfo;
+		return Board;
 	}
-	public List<MemInfo> myqnaboard(String id) {
+	public List<Board> myqnaboard(Criteria cri,String id) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = " select rownum, z.seqno as seqno, z.content as content, z.wdate as wdate, z.id as id, z.count as count";
@@ -88,11 +88,11 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
+				b = new Board();
 				System.out.println("제목님아 나오셈" +rs.getString("content"));
-				b.setNo(rs.getString("rownum"));
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setContent(rs.getString("content"));
 				b.setWdate(rs.getString("wdate"));
@@ -107,11 +107,11 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 		return board;
 	}
-	public List<MemInfo> myadoptboard(String id) {
+	public List<Board> myadoptboard(Criteria cri,String id) {
 
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = " select rownum, z.seqno as seqno, z.content as content, z.wdate as wdate, z.id as id, z.count as count";
@@ -128,10 +128,10 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
-				b.setNo(rs.getString("rownum"));
+				b = new Board();
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setContent(rs.getString("content"));
 				b.setWdate(rs.getString("wdate"));
@@ -146,10 +146,10 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 		return board;
 	}
-	public List<MemInfo> myadoptreviewboard(String id) {
+	public List<Board> myadoptreviewboard(Criteria cri,String id) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = " select rownum, z.seqno as seqno, z.content as content, z.wdate as wdate, z.id as id, z.count as count";
@@ -166,10 +166,10 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
-				b.setNo(rs.getString("rownum"));
+				b = new Board();
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setContent(rs.getString("content"));
 				b.setWdate(rs.getString("wdate"));
@@ -184,10 +184,10 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 		return board;
 	}
-	public List<MemInfo> myplantboard(String id) {
+	public List<Board> myplantboard(Criteria cri,String id) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
 		String sql = " select rownum, z.mplant_seqno as seqno, z.etc as etc, z.wdate as wdate, z.id as id, z.count as count";
@@ -204,11 +204,11 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
+				b = new Board();
 				//System.out.println("이티씨 나오셈" +rs.getString("etc"));
-				b.setNo(rs.getString("rownum"));
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setEtc(rs.getString("etc"));
 				b.setWdate(rs.getString("wdate"));
@@ -223,18 +223,15 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 		return board;
 	}
-	public List<MemInfo> myreply(String id) {
+	public List<Board> myreply(Criteria cri,String id) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 
-		String sql = " select rownum, z.seqno as seqno, z.title as title, z.count as count, z.wdate as wdate, z.id as id";
-		sql += " from(select b.seqno,b.title, b.count, b.wdate, b.id";
-		sql += " from board b, board_reply br, members m";
-		sql += " where b.seqno = br.seqno";
-		sql += " and br.id = m.id)z";
-		sql += " where z.id = ?";
+		String sql = " select rownum, b.seqno, b.title, b.count, b.wdate, b.id";
+		       sql += " from board b, board_reply br ";
+			   sql += " where b.seqno = br.seqno and br.id= ?";
 
 		try {
 			conn = ds.getConnection();
@@ -244,11 +241,11 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
+				b = new Board();
 				//System.out.println("이티씨 나오셈" +rs.getString("etc"));
-				b.setNo(rs.getString("rownum"));
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setTitle(rs.getString("title"));
 				b.setWdate(rs.getString("wdate"));
@@ -263,10 +260,10 @@ public class MemInfoDaoImp implements MemInfoDao{
 		}
 		return board;
 	}
-	public List<MemInfo> myqnareplyboard(String id) {
+	public List<Board> myqnareplyboard(Criteria cri,String id) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		List<MemInfo> board = new ArrayList<MemInfo>();
+		List<Board> board = new ArrayList<Board>();
 		System.out.println("아이디 : " + id);
 		String sql = " select rownum, z.seqno as seqno, z.content as content, z.count as count, z.wdate as wdate, z.id as id";
 		sql += " from(select q.seqno,q.content, q.count, q.wdate, q.id";
@@ -283,11 +280,11 @@ public class MemInfoDaoImp implements MemInfoDao{
 			//stmt.setString(2, id);
 
 			ResultSet rs = stmt.executeQuery();
-			MemInfo b = null;
+			Board b = null;
 			while(rs.next()) {
-				b = new MemInfo();
+				b = new Board();
 				//System.out.println("이티씨 나오셈" +rs.getString("etc"));
-				b.setNo(rs.getString("rownum"));
+				b.setRn(rs.getString("rownum"));
 				b.setSeqno(rs.getString("seqno"));
 				b.setContent(rs.getString("content"));
 				b.setWdate(rs.getString("wdate"));
@@ -341,59 +338,40 @@ public class MemInfoDaoImp implements MemInfoDao{
 		return member;
 	}
 
-	public MemInfo boardDetail(String seqno) {
-		PreparedStatement stmt = null;
-		Connection conn = null;
-		MemInfo board = new MemInfo();
-
-		try {
-			conn = ds.getConnection();
-			//조회수
-			String sql = "update qna set count = count+1 where seqno ="  + seqno;
-			stmt.executeUpdate();
-
-			//게시물 세부내용
-			sql = " select seqno, title, content, id,";
-			sql +="	To_char(b.wdate, 'YYYY-MM-DD(DY) HH:MI:SS PM') wdate,";
-			sql +=" count, (select name from members m where m.id = b.id) name"; 
-			sql +="	from board b";
-			sql +="	where b.seqno = ?";
-			sql +="	union all";
-			sql +="	select br_seqno, '', content, id,";
-			sql +=" TO_CHAR(r.wdate, 'YYYY-MM-DD(DY) HH:MI:SS PM') wdate,";
-			sql +=" 0, (select name from members m where m.id = r.id) name";
-			sql +="	from board_reply r";
-			sql +="	where r.seqno = ?";
-			sql +="	union all";
-			sql +="	select bi_seqno, '', '', '', '', 0, ''";
-			sql +="	from board_img i";
-			sql +="	where i.seqno = ?";
-
-			stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			stmt.setString(1, seqno);
-			stmt.setString(2, seqno);
-			stmt.setString(3, seqno);
-			ResultSet rs = stmt.executeQuery();
-
-			rs.next();
-
-			board.setSeqno(seqno);
-			board.setTitle(rs.getString("title"));
-			board.setContent(rs.getString("content"));
-			board.setId(rs.getString("id"));
-			board.setWdate(rs.getString("wdate"));
-			board.setCount(rs.getString("count"));
-			board.setName(rs.getString("name"));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			resourceClose(conn, stmt);
-		}
-
-		return board;
-	}
+	/*
+	 * public List<Board> boardDetail(String seqno) { PreparedStatement stmt = null;
+	 * Connection conn = null; Board board = new Board();
+	 * 
+	 * try { conn = ds.getConnection(); //조회수 String sql =
+	 * "update qna set count = count+1 where seqno =" + seqno; stmt.executeUpdate();
+	 * 
+	 * //게시물 세부내용 sql = " select seqno, title, content, id,"; sql
+	 * +="	To_char(b.wdate, 'YYYY-MM-DD(DY) HH:MI:SS PM') wdate,"; sql
+	 * +=" count, (select name from members m where m.id = b.id) name"; sql
+	 * +="	from board b"; sql +="	where b.seqno = ?"; sql +="	union all"; sql
+	 * +="	select br_seqno, '', content, id,"; sql
+	 * +=" TO_CHAR(r.wdate, 'YYYY-MM-DD(DY) HH:MI:SS PM') wdate,"; sql
+	 * +=" 0, (select name from members m where m.id = r.id) name"; sql
+	 * +="	from board_reply r"; sql +="	where r.seqno = ?"; sql +="	union all";
+	 * sql +="	select bi_seqno, '', '', '', '', 0, ''"; sql
+	 * +="	from board_img i"; sql +="	where i.seqno = ?";
+	 * 
+	 * stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
+	 * ResultSet.CONCUR_UPDATABLE); stmt.setString(1, seqno); stmt.setString(2,
+	 * seqno); stmt.setString(3, seqno); ResultSet rs = stmt.executeQuery();
+	 * 
+	 * rs.next();
+	 * 
+	 * board.setSeqno(seqno); board.setTitle(rs.getString("title"));
+	 * board.setContent(rs.getString("content")); board.setId(rs.getString("id"));
+	 * board.setWdate(rs.getString("wdate")); board.setCount(rs.getString("count"));
+	 * board.setName(rs.getString("name"));
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); }finally {
+	 * resourceClose(conn, stmt); }
+	 * 
+	 * return board; }
+	 */
 	private void resourceClose(Connection conn, PreparedStatement stmt) {
 		//자원반납
 		try {

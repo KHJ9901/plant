@@ -43,7 +43,7 @@ public class MemberController {
 //	}
 	
 	
-
+	//컨트롤 
 	@GetMapping("loginview")
 	public String loginview() {
 		return "/member/login";

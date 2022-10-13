@@ -32,7 +32,7 @@ import com.plant.dto.Plantmember;
 import com.plant.service.*;
 
 @Controller
-@RequestMapping("/me/*")
+@RequestMapping("/me/")
 public class MemInfoController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -40,7 +40,7 @@ public class MemInfoController {
 	@Autowired
 	private MemInfoService ms;
 
-	@RequestMapping("mypageview")
+	@RequestMapping(value="mypage", method= {RequestMethod.POST, RequestMethod.GET})
 	public String mypageview(HttpSession sess, Model model) {
 		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		
@@ -59,8 +59,8 @@ public class MemInfoController {
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
          if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
          
-         List<Board> board = ms.myqnaboard(cri, id);
-         System.out.println("보드!!!!!!!! : " + board.size());
+         List<Board> board = ms.list(cri, id);
+         //System.out.println("보드!!!!!!!! : " + board.size());
 
          model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
          model.addAttribute("board", board); //요청
@@ -75,7 +75,7 @@ public class MemInfoController {
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
          if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
          
-         List<Board> board = ms.list(cri, id);
+         List<Board> board = ms.list2(cri, id);
          System.out.println("보드!!!!!!!! : " + board.size());
 
          model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
@@ -83,7 +83,7 @@ public class MemInfoController {
          return"/member/myqnaboard";
       }
 	
-	@RequestMapping(value="/me/myadoptboard", method= {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value="myadoptboard", method= {RequestMethod.POST, RequestMethod.GET})
 	public String list3(Criteria cri, Model model, HttpSession sess) {
 		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		String id = loginUser.getId();
@@ -91,7 +91,7 @@ public class MemInfoController {
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
          if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
          
-         List<Board> board = ms.list(cri, id);
+         List<Board> board = ms.list3(cri, id);
          System.out.println("보드!!!!!!!! : " + board.size());
 
          model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
@@ -99,7 +99,7 @@ public class MemInfoController {
          return"/member/myadoptboard";
       }
 	
-	@RequestMapping(value="/me/myplantboard", method= {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value="myplantboard", method= {RequestMethod.POST, RequestMethod.GET})
 	public String list4(Criteria cri, Model model, HttpSession sess) {
 		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		String id = loginUser.getId();
@@ -107,14 +107,14 @@ public class MemInfoController {
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
          if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
          
-         List<Board> board = ms.list(cri, id);
+         List<Board> board = ms.list4(cri, id);
          System.out.println("보드!!!!!!!! : " + board.size());
 
          model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
          model.addAttribute("board", board); //요청
          return"/member/myboard";
       }
-	@RequestMapping(value="/me/myadoptreviewboard", method= {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value="myadoptreviewboard", method= {RequestMethod.POST, RequestMethod.GET})
 	public String list5(Criteria cri, Model model, HttpSession sess) {
 		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
 		String id = loginUser.getId();
@@ -122,12 +122,44 @@ public class MemInfoController {
 		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
 		if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
 		
-		List<Board> board = ms.list(cri, id);
+		List<Board> board = ms.list5(cri, id);
 		System.out.println("보드!!!!!!!! : " + board.size());
 		
 		model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
 		model.addAttribute("board", board); //요청
 		return"/member/myboard";
+	}
+
+	@RequestMapping(value="myreply", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list6(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+		if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+		
+		List<Board> board = ms.list6(cri, id);
+		System.out.println("보드!!!!!!!! : " + board.size());
+		
+		model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+		model.addAttribute("board", board); //요청
+		return"/member/myreply";
+	}
+
+	@RequestMapping(value="myqnareplyboard", method= {RequestMethod.POST, RequestMethod.GET})
+	public String list7(Criteria cri, Model model, HttpSession sess) {
+		LoginImpl loginUser = (LoginImpl) sess.getAttribute("loginUser");
+		String id = loginUser.getId();
+		
+		if(cri.getCurrentPage() == 0) cri.setCurrentPage(1);
+		if(cri.getRowPerpage() == 0) cri.setRowPerpage(10);
+		
+		List<Board> board = ms.list7(cri, id);
+		System.out.println("보드!!!!!!!! : " + board.size());
+		
+		model.addAttribute("pageMaker", new Page(ms.getTotalRec(cri), cri));
+		model.addAttribute("board", board); //요청
+		return"/member/myreply";
 	}
 	
 
