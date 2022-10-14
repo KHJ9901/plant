@@ -46,23 +46,33 @@
 				<c:if test ="${adoptfile != null}">
 					<c:forEach items="${adoptfile}" var="file">
 						<form class="ask_file" name="filedown" method="post" action="/plant/file/fileDown">
-						<input type="hidden" name ="filename" value="${file.filename}">
-					  	<input type="hidden" name ="savefilename" value="${file.savefilename}">
-					  	<input type="hidden" name ="filepath" value="${file.filepath}">
-					  	<input type="hidden" name="filesize" value="${file.filesize}">
+							<input type="hidden" name ="filename" value="${file.filename}">
+						  	<input type="hidden" name ="savefilename" value="${file.savefilename}">
+						  	<input type="hidden" name ="filepath" value="${file.filepath}">
+						  	<input type="hidden" name="filesize" value="${file.filesize}">
 					
 							<c:set value="${file.filetype}" var="filetype" />
 							<c:set value="${fn:substring(filetype, 0, fn:indexOf(filetype,'/'))}" var="type"/>
 					
 							<c:if test="${type eq 'image'}">
 								<c:set value="${file.thumbnail.fileName}" var="thumb_file" />
-								<img src="/upload/thumbnail/${thumb_file}">
+								<img src="/upload/thumbnail/${thumb_file}" style="margin-left: 30px;">
 							</c:if>
 							<!-- <input type="submit" value="다운로드"> -->
 						</form>
 					</c:forEach>
 				</c:if>				
 				</div>
+				
+				<div class="asd_report">
+				<c:if test="${user.id eq adopt.id}">
+					<button class="asd_regist_bto" onclick="location.href='/adopt/adetail?seqno=${adopt.seqno}&page=aModify'">수정</button> 
+					<button class="asd_regist_bto" onclick="del_confirm('${adopt.seqno}')">삭제</button>
+				</c:if>				
+				</div>
+				
+				
+				
 				<hr class="asd_line">
 				<div class="asd_info">
 					<span class="data">식물</span>${adopt.pname}<br>
@@ -72,12 +82,7 @@
 					<span class="data">습도</span>${adopt.moist}<br>
 				</div>
 				
-				<div class="asd_report">
-				<c:if test="${user.id eq adopt.id}">
-					<button class="myButton" onclick="location.href='/adopt/adetail?seqno=${adopt.seqno}&page=aModify'">수정</button> 
-					<button class="myButton" onclick="del_confirm('${adopt.seqno}')">삭제</button>
-				</c:if>				
-				</div>
+
 		
 				
 			</section>
