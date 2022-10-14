@@ -134,8 +134,6 @@ public class DicController {
 		
 		rttr.addFlashAttribute("seqno", ds.insertMp(mplant, ffffffffff)); 
 			// addFlash는 객체를 담음
-		int no =  ds.insertMp(mplant, ffffffffff);
-		System.out.println(no);
 		
 		return "redirect:/dic/mplantDetail";
 	}
