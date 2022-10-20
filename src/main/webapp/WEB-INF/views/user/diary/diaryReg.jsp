@@ -77,7 +77,7 @@
 							<div class="diary-container2">
 								<c:set value="${loginUser}" var="user"/>
 								<form method="post" enctype="multipart/form-data" action="/diary/diaryRegister" onsubmit="return check(this)">
-								<input type="text" name="id" value = "${user.id}">
+								<input type="hidden" name="id" value = "${user.id}">
 								
 								<table>
 								<tr>
