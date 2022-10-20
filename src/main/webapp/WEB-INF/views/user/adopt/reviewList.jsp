@@ -36,14 +36,14 @@
 			<form name="search" method="POST" action="/review/list">
 				<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}">
 				
-				<select name="search_field">
+				<select name="searchField">
 				  <option value="content" 
 				  <c:if test="${pageMaker.cri.searchField == 'content'}">selected</c:if>>내용</option>		
 				  <option value="id"
 				  <c:if test="${pageMaker.cri.searchField == 'id'}">selected</c:if>>아이디</option>
 				</select>
 			
-				<input type="text" name="search_text" placeholder="search..." 
+				<input type="text" name="searchText" placeholder="search..." 
 					   value="${pageMaker.cri.searchText}">	
 				<input type="submit" value="검색">
 				

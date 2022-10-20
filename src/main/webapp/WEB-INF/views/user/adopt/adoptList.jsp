@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -38,14 +39,14 @@
 			<form name="search" method="POST" action="/adopt/list">
 				<input type="hidden" name="currentPage" value="${pageMaker.cri.currentPage}">
 				
-				<select name="search_field">
+				<select name="searchField">
 				  <option value="content" 
 				  <c:if test="${pageMaker.cri.searchField == 'content'}">selected</c:if>>내용</option>		
 				  <option value="id"
 				  <c:if test="${pageMaker.cri.searchField == 'id'}">selected</c:if>>아이디</option>
 				</select>
 			
-				<input type="text" name="search_text" placeholder="search..." 
+				<input type="text" name="searchText" placeholder="search..." 
 					   value="${pageMaker.cri.searchText}">	
 				<input type="submit" value="검색">	
 				
@@ -69,11 +70,9 @@
 		<li class="adoptList">
 			<div class="aboptBox">
 				<a href="/adopt/adetail?seqno=${adopt.seqno}">
-			 	 <img src="../img/plant2.jpg" alt="plant"></a>
-			</div>
-			<div class="desc">
-				<p> ${adopt.id}</p>
-				<p> ${adopt.wdate}</p>					
+			 	<img src="../img/plant2.jpg" alt="plant"></a>
+				<p class="desc"> ${adopt.id}</p>
+				<p class="desc"> ${adopt.wdate}</p>					
 			</div>
 		</li>
 		</c:forEach>	
