@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.container {
+	width:600px;
+	padding: 10px;
+	border: 2px solid #3e3e41;
+	background-color: lightgreen;
+}
+
+.talk_view {
+	position: relative;
+	width: 580px;
+	height: 200px;
+	padding: 5px;
+	border: 1px dotted #3e3e41;
+	background-color: honeydew;
+}
+
+#targetUser{
+   width: 90%;
+}

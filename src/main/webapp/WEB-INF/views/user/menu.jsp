@@ -17,6 +17,8 @@
     <c:set value="${loginUser}" var = "loginuser"/>
     	<c:if test="${loginuser != null}">
 		    <a href="/diary/list" class="w3-bar-item w3-button w3-hide-small">식물일기</a>
+		    <a href="/chatting" class="w3-bar-item w3-button w3-hide-small">1:1채팅</a>
+ 			<a href="/chatList" class="w3-bar-item w3-button w3-hide-small">채팅리스트</a>
 		    <a href="/lo/logout" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-board"></i>로그아웃</a>
 		    <a href="/me/mypage" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-board"></i>마이페이지</a>
   	    </c:if>
@@ -42,6 +44,8 @@
     
     <c:if test="${loginuser != null}">
 	    <a href="/diary/list" class="w3-bar-item w3-button">식물일기</a>
+	    <a href="/chatting" class="w3-bar-item w3-button">1:1채팅</a>
+ 		<a href="/chatList" class="w3-bar-item w3-button">채팅리스트</a>
 	    <a href="/lo/logout" class="w3-bar-item w3-button w3-right"><i class="fa fa-board"></i>로그아웃</a>
 	    <a href="/me/mypage" class="w3-bar-item w3-button w3-right"><i class="fa fa-board"></i>마이페이지</a>
     </c:if>
